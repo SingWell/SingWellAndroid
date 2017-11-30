@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name"></string>
+    <string name="action_settings"></string>
+    <!--<string name="item_title">Traditional Choir</string>-->
+    <!--<string name="item_description">This choir is under the direction of Kenton Kravig.</string>-->
+    <!--<string name="detail_desc">This is St. Mark\'s Catholic Church principal choir. It is composed-->
+    <!--of experienced musicians and practices regularly on Wednesday nights. </string>-->
+    <!--<string name="detail_location">123 ABCD St. Plano, TX 75000</string>-->
+</resources>
