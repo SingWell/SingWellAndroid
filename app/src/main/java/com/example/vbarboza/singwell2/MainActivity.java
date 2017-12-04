@@ -21,14 +21,18 @@ public class MainActivity extends AppCompatActivity {
     SectionsPagerAdapter mSectionsPageAdapter;
 
     private ViewPager mViewPager;
+    private Toolbar mToolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fragment_choir_list_l);
         // Adding Toolbar to Main screen
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        mToolbar = (Toolbar) findViewById(R.id.toolbar);
+
+        setSupportActionBar(mToolbar);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+
         Log.d(TAG, "onCreate: Starting.");
 
         mSectionsPageAdapter = new SectionsPagerAdapter(getSupportFragmentManager());

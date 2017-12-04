@@ -1,7 +1,7 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme.Base" parent="android:Theme.Material.Light.NoActionBar">
+    <style name="AppTheme.Base" parent="Theme.AppCompat.Light.DarkActionBar">
         <item name="colorPrimary">@color/colorPrimary</item>
         <!-- Light Indigo -->
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
