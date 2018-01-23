@@ -1,5 +1,6 @@
 package com.example.vbarboza.singwell2;
 
+import android.support.v4.app.FragmentActivity;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -66,10 +67,6 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
         return super.onOptionsItemSelected(item);
     }
 
-    public void scrollTotop(View v){
-
-    }
-
     @Override
     public void onDrawerItemSelected(View view, int position) {
         displayView(position);
@@ -78,6 +75,7 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
 
     private void displayView(int position) {
         Fragment fragment = null;
+        FragmentActivity fragmentA = null;
         String title = getString(R.string.app_name);
         switch (position) {
             case 0:
@@ -89,12 +87,12 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
                 title = getString(R.string.title_choirs);
                 break;
             case 2:
-                fragment = new LoginFragment();
-                title = getString(R.string.title_login);
-                break;
-            case 3:
                 fragment = new ProfileFragment();
                 title = "Profile";
+                break;
+            case 3:
+                fragment = new LoginFragment();
+                title = "Login";
                 break;
             default:
                 break;
