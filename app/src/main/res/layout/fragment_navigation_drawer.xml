@@ -19,7 +19,10 @@
             android:layout_height="70dp"
             android:layout_centerInParent="true"
             android:scaleType="fitCenter"
-            android:src="@drawable/ic_profile" />
+            android:src="@drawable/profile"
+            />
+        <!--make icon clickable for login   android:background="@null"
+            android:onClick="scrollToTop" ImageButton-->
 
     </RelativeLayout>
 
