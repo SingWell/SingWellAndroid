@@ -12,6 +12,7 @@
     <string name="nav_item_choirs">Choirs</string>
     <string name="nav_item_profile">Profile</string>
     <string name="nav_item_login">Login</string>
+    <string name="nav_item_Register">Register</string>
 
 
     <!-- navigation drawer item labels  -->
@@ -20,6 +21,7 @@
         <item>@string/nav_item_choirs</item>
         <item>@string/nav_item_profile</item>
         <item>@string/nav_item_login</item>
+        <item>@string/nav_item_Register</item>
 
     </string-array>
 
@@ -28,6 +30,7 @@
     <string name="title_home">Home</string>
     <string name="title_profile">Profile</string>
     <string name="title_login">Login</string>
+    <string name="title_Register">Register</string>
 
 
 

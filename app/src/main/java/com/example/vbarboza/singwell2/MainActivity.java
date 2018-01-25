@@ -94,6 +94,10 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
                 fragment = new LoginFragment();
                 title = "Login";
                 break;
+            case 4:
+                fragment = new RegisterFragment();
+                title = "Register";
+                break;
             default:
                 break;
         }
