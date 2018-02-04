@@ -1,7 +1,5 @@
 package com.example.vbarboza.singwell2;
 
-import android.app.Activity;
-import android.support.v4.app.FragmentActivity;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -18,8 +16,6 @@ import android.text.TextUtils;
 import android.widget.Toast;
 import android.widget.EditText;
 import android.widget.ProgressBar;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -48,8 +44,8 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mToolbar = (Toolbar) findViewById(R.id.toolbar);
-        progressBar = (ProgressBar) findViewById(R.id.progressBar);
+        mToolbar = findViewById(R.id.toolbar);
+        progressBar = findViewById(R.id.progressBar);
 
         setSupportActionBar(mToolbar);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
@@ -62,17 +58,26 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
         // display the first navigation drawer view on app launch
         displayView(0);
 
-        //if the user is already logged in we will directly start the profile activity
-        if (SharedPrefManager.getInstance(this).isLoggedIn()) {
-            finish();
-            startActivity(new Intent(this, ProfileActivity.class));
-            return;
-        }
-
-        //editTextUsername = findViewById(R.id.editTextUsername);
-        editTextEmail = findViewById(R.id.editTextEmail);
-        //editTextPassword = findViewById(R.id.editTextPassword);
-
+//        //if the user is already logged in we will directly start the profile activity
+//        if (SharedPrefManager.getInstance(this).isLoggedIn()) {
+//            finish();
+//            startActivity(new Intent(this, ProfileActivity.class));
+//            return;
+//        }
+//
+//        editTextUsername = findViewById(R.id.editTextUsername);
+//        editTextEmail = findViewById(R.id.editTextEmail);
+//        editTextPassword = findViewById(R.id.editTextPassword);
+//
+//        findViewById(R.id.buttonRegister).setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                //if user pressed on button register
+//                //here we will register the user to server
+//                registerUser();
+//            }
+//        });
+//
 //        findViewById(R.id.textViewLogin).setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View view) {
@@ -221,11 +226,12 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
                 startActivity(new Intent(this, ProfileActivity.class));
                 break;
             case 3:
-                startActivity(new Intent(this, LoginActivity.class));
+                Intent startLoginActivity = new Intent(this, LoginActivity.class);
+                startActivity(startLoginActivity);
+                //startActivity(new Intent(this, LoginActivity.class));
                 break;
             case 4:
-                fragment = new RegisterFragment();
-                title = "Register";
+                startActivity(new Intent(this, RegisterActivity.class));
                 break;
             default:
                 break;

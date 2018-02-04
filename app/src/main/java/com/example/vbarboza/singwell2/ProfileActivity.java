@@ -13,36 +13,40 @@ import com.android.volley.toolbox.StringRequest;
 
 public class ProfileActivity extends AppCompatActivity {
 
-    TextView textViewName, textViewLastName, textViewCellNumber, textViewEmail;
+    TextView textViewName, textViewLastName, textViewCellNumber, textViewEmail, textViewUsername, textViewId;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_profile);
+        setContentView(R.layout.content_scrolling);
 
-        //if user is not logged in, start the login activity
-        if (!SharedPrefManager.getInstance(this).isLoggedIn()) {
-            finish();
-            startActivity(new Intent(this, LoginActivity.class));
-        }
+//        //if user is not logged in, start the login activity
+//        if (!SharedPrefManager.getInstance(this).isLoggedIn()) {
+//            finish();
+//            startActivity(new Intent(this, LoginActivity.class));
+//        }
 
-        //textViewId = findViewById(R.id.textViewId);
-        textViewEmail = findViewById(R.id.textViewEmail);
+//        textViewId = findViewById(R.id.textViewId);
+//        textViewUsername = findViewById(R.id.textViewUsername);
+//        textViewEmail = findViewById(R.id.textViewEmail);
+//
+//        //getting current user
+//        User user = SharedPrefManager.getInstance(this).getUser();
+//
+//        //setting the values to the textviews
+//        textViewId.setText(String.valueOf(user.getId()));
+//        textViewUsername.setText(user.getUsername());
+//        textViewEmail.setText(user.getEmail());
 
-        //getting current user
-        User user = SharedPrefManager.getInstance(this).getUser();
-
-        //set values to the textviews
-        textViewEmail.setText(String.valueOf(user.getEmail()));
-
-        //call logout method when user preses logout button
-        findViewById(R.id.buttonLogout).setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view){
-                finish();
-                SharedPrefManager.getInstance(getApplicationContext()).logout();
-            }
-        });
+        //when the user presses logout button
+        //calling the logout method
+//        findViewById(R.id.buttonLogout).setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                finish();
+//                SharedPrefManager.getInstance(getApplicationContext()).logout();
+//            }
+//        });
     }
 
 
