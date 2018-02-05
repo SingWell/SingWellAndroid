@@ -9,12 +9,6 @@
     android:elevation="7dp">
 
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        android:orientation="vertical"
-        android:padding="10dp">
 
         <LinearLayout
             android:id="@+id/container_toolbar"
@@ -25,7 +19,7 @@
             <include
                 android:id="@+id/toolbar"
                 layout="@layout/toolbar" />
-        </LinearLayout>
+
 
 
         <!--<EditText-->
@@ -97,8 +91,8 @@
             android:text="Already Registered?\nLogin Here"
             android:textAlignment="center"
             android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium" />
-    </LinearLayout>
 
+        </LinearLayout>
     <fragment
         android:id="@+id/fragment_navigation_drawer"
         android:name="com.example.vbarboza.singwell2.FragmentDrawer"

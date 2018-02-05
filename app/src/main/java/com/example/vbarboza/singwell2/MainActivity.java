@@ -224,14 +224,17 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
                 break;
             case 2:
                 startActivity(new Intent(this, ProfileActivity.class));
+                title = getString(R.string.title_profile);
                 break;
             case 3:
                 Intent startLoginActivity = new Intent(this, LoginActivity.class);
                 startActivity(startLoginActivity);
+                title = getString(R.string.title_login);
                 //startActivity(new Intent(this, LoginActivity.class));
                 break;
             case 4:
                 startActivity(new Intent(this, RegisterActivity.class));
+                title = getString(R.string.title_Register);
                 break;
             default:
                 break;
