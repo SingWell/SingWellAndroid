@@ -73,6 +73,6 @@
             android:textAlignment="center"
             android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium" />
 
-    </LinearLayout>
+        </LinearLayout>
     </LinearLayout>
 </android.support.v4.widget.DrawerLayout>

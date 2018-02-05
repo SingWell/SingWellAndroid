@@ -16,19 +16,22 @@ import android.widget.EditText;
 
 
 public class LoginActivity extends AppCompatActivity implements FragmentDrawer.FragmentDrawerListener{
+
+    private Toolbar mToolbar;
+    private FragmentDrawer drawerFragment;
+
     public LoginActivity() {
         // Required empty public constructor
     }
 
     EditText editTextUsername, editTextEmail, editTextPassword;
-    private Toolbar mToolbar;
-    private FragmentDrawer drawerFragment;
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_login);
+
         //if the user is already logged in we will directly start the profile activity
         if (SharedPrefManager.getInstance(this).isLoggedIn()) {
             finish();
@@ -40,16 +43,6 @@ public class LoginActivity extends AppCompatActivity implements FragmentDrawer.F
         editTextEmail = findViewById(R.id.editTextEmail);
         //editTextPassword = findViewById(R.id.editTextPassword);
 
-        mToolbar = findViewById(R.id.toolbar);
-
-        setSupportActionBar(mToolbar);
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
-
-        drawerFragment = (FragmentDrawer)
-                getSupportFragmentManager().findFragmentById(R.id.fragment_navigation_drawer);
-        drawerFragment.setUp(R.id.fragment_navigation_drawer, (DrawerLayout) findViewById(R.id.drawer_layout), mToolbar);
-        drawerFragment.setDrawerListener(this);
-
 
 
         findViewById(R.id.textViewLogin).setOnClickListener(new View.OnClickListener() {
@@ -60,6 +53,16 @@ public class LoginActivity extends AppCompatActivity implements FragmentDrawer.F
                 startActivity(new Intent( LoginActivity.this, LoginActivity.class));
             }
         });
+
+        mToolbar = findViewById(R.id.toolbar);
+
+        setSupportActionBar(mToolbar);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+
+        drawerFragment = (FragmentDrawer)
+                getSupportFragmentManager().findFragmentById(R.id.fragment_navigation_drawer);
+        drawerFragment.setUp(R.id.fragment_navigation_drawer, (DrawerLayout) findViewById(R.id.drawer_layout), mToolbar);
+        drawerFragment.setDrawerListener(this);
     }
 
     private void displayView(int position) {
