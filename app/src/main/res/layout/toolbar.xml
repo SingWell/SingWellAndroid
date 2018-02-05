@@ -18,4 +18,4 @@
     android:layout_gravity="center"
     android:id="@+id/toolbar_title" />
 
-</android.support.v7.widget.Toolbar>
+    </android.support.v7.widget.Toolbar>
