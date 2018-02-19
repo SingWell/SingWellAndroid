@@ -1,66 +1,84 @@
 package com.example.vbarboza.singwell2;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
-
-import com.android.volley.toolbox.StringRequest;
-
+import android.support.v7.widget.Toolbar;
 
 public class ProfileActivity extends AppCompatActivity {
 
-    TextView textViewName, textViewLastName, textViewCellNumber, textViewEmail, textViewUsername, textViewId;
+    TextView textViewName, textViewLastName, textViewCellNumber, textViewEmail, textViewFullName, textViewId;
+    Button buttonLogout;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.content_scrolling);
+        setContentView(R.layout.activity_profile);
 
-//        //if user is not logged in, start the login activity
-//        if (!SharedPrefManager.getInstance(this).isLoggedIn()) {
-//            finish();
-//            startActivity(new Intent(this, LoginActivity.class));
-//        }
+        System.out.println("******************INSIDE PROFILE ACTIVITY*************");
+        Toolbar toolbar = findViewById(R.id.toolbar);
 
-//        textViewId = findViewById(R.id.textViewId);
-//        textViewUsername = findViewById(R.id.textViewUsername);
-//        textViewEmail = findViewById(R.id.textViewEmail);
-//
-//        //getting current user
-//        User user = SharedPrefManager.getInstance(this).getUser();
-//
-//        //setting the values to the textviews
-//        textViewId.setText(String.valueOf(user.getId()));
-//        textViewUsername.setText(user.getUsername());
-//        textViewEmail.setText(user.getEmail());
+        buttonLogout= findViewById(R.id.buttonLogout);
+
+        //if user is not logged in, start the login activity
+        if (!SharedPrefManager.getInstance(this).isLoggedIn()) {
+            finish();
+            startActivity(new Intent(this, LoginActivity.class));
+        }
+
+        textViewFullName = findViewById(R.id.tvNumber1);
+        //textViewCellNumber = findViewById(R.id)
+        textViewEmail = findViewById(R.id.tvNumber3);
+        //buttonLogout = findViewById(R.id.buttonLogout);
+
+        //getting current user
+        User user = SharedPrefManager.getInstance(this).getUser();
+        System.out.println("token: " + user.getToken());
+        System.out.println("id: " + user.getId());
+        System.out.println("full name: " + user.getFullName());
+
+        //setting the values to the textviews
+        //textViewUsername.setText(user.getUsername());
+        textViewEmail.setText(user.getEmail());
+        //textViewId.setText(user.getId());
 
         //when the user presses logout button
         //calling the logout method
-//        findViewById(R.id.buttonLogout).setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                finish();
-//                SharedPrefManager.getInstance(getApplicationContext()).logout();
-//            }
-//        });
+        findViewById(R.id.buttonLogout).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+                SharedPrefManager.getInstance(getApplicationContext()).logout();
+            }
+        });
+
+        buttonLogout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Launching News Feed Screen
+                SharedPreferences preferences = getSharedPreferences("loginPrefs", Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = preferences.edit();
+                editor.clear();
+                editor.commit();
+
+                startActivity(new Intent(ProfileActivity.this,MainActivity.class));
+                finish();
+
+                System.out.println("!!!!!!!!!!!!!!LOGOUT!!!!!!!!!!!!!");
+            }
+        });
     }
-
-
-
-
-
-    //@Override
-//    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-//                             Bundle savedInstanceState) {
-//        View rootView = inflater.inflate(R.layout.activity_profile, container, false);
-//
-//
-//        // Inflate the layout for this fragment
-//        return rootView;
-//    }
-
 }
+
+
+
+
+

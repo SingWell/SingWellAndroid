@@ -1,8 +1,11 @@
 <android.support.v4.widget.DrawerLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:elevation="7dp"
+    app:menu="@menu/drawer_view">
 
     <LinearLayout
         android:id="@+id/container_toolbar"
@@ -10,23 +13,41 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
+        <!--add toolbar-->
         <include
             android:id="@+id/toolbar"
             layout="@layout/toolbar" />
+
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="100dp"
-        android:orientation="vertical"
-        android:padding="10dp">
-
-
+        android:layout_marginTop="70dp"
+        android:layout_marginBottom="8dp"
+        android:orientation="vertical">
 
         <EditText
+            android:id="@+id/editTextEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginTop="10dp"
+            android:fontFamily="sans-serif"
+            android:hint="Email"
+            android:inputType="textEmailAddress" />
+
+
+        <!--passwordToggleEnabled allows user to see password entered-->
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/etPasswordLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:passwordToggleEnabled="true">
+
+
+        <android.support.design.widget.TextInputEditText
+
             android:id="@+id/editTextPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -34,25 +55,18 @@
             android:layout_marginTop="8dp"
             android:fontFamily="sans-serif"
             android:hint="Password"
-            android:inputType="textPassword" />
+            android:inputType="textPassword"/>
 
-        <EditText
-            android:id="@+id/editTextEmail"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:layout_marginTop="8dp"
-            android:fontFamily="sans-serif"
-            android:hint="Email"
-            android:inputType="textEmailAddress" />
+        </android.support.design.widget.TextInputLayout>
 
-        <Button
+    <Button
             android:id="@+id/buttonLogin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
             android:layout_marginTop="8dp"
-            android:text="Login" />
+            android:onClick="login"
+            android:text="@string/title_login" />
 
         <TextView
             android:id="@+id/textViewRegister"
@@ -60,8 +74,10 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
             android:layout_marginTop="8dp"
+            android:clickable="true"
             android:text="Don't have an account?\nRegister Here"
-            android:textAlignment="center"
+            android:textAlignment="gravity"
+            android:textColor="@color/colorAccent"
             android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium" />
 
         <TextView

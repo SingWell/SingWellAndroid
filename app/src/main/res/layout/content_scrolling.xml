@@ -10,10 +10,49 @@
     tools:context="com.example.vbarboza.singwell2.ProfileActivity"
     tools:showIn="@layout/activity_profile">
 
+
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
+
+        <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/selectableItemBackground"
+        android:clickable="true"
+        android:padding="@dimen/activity_horizontal_margin">
+
+
+            <!--USER Full name-->
+
+
+        <ImageView
+        android:id="@+id/ivContactItem1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginEnd="@dimen/activity_horizontal_margin"
+        android:layout_marginRight="@dimen/activity_horizontal_margin"
+            android:textColor="#212121"
+            android:src="@drawable/perm_contact_calendar_black_24x24"/>
+
+        <TextView
+        android:id="@+id/tvNumber1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:layout_marginStart="@dimen/activity_horizontal_margin"
+        android:layout_toEndOf="@id/tvNumber1"
+        android:layout_toRightOf="@id/tvNumber1"
+            android:textStyle="bold|italic"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:textColor="#212121" />
+
+        </RelativeLayout>
+
+        <include layout="@layout/item_divider" />
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -23,7 +62,7 @@
             android:padding="@dimen/activity_horizontal_margin">
 
             <ImageView
-                android:id="@+id/ivContactItem1"
+                android:id="@+id/ivContactItem2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
@@ -32,14 +71,14 @@
                 android:src="@drawable/ic_phone_black_24dp" />
 
             <TextView
-                android:id="@+id/tvNumber1"
+                android:id="@+id/tvNumber2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/activity_horizontal_margin"
                 android:layout_marginStart="@dimen/activity_horizontal_margin"
-                android:layout_toEndOf="@id/ivContactItem1"
-                android:layout_toRightOf="@id/ivContactItem1"
-                android:text="(123) 456-7890"
+                android:layout_toEndOf="@id/ivContactItem2"
+                android:layout_toRightOf="@id/ivContactItem2"
+
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 android:textColor="#212121" />
 
@@ -54,6 +93,7 @@
             android:clickable="true"
             android:padding="@dimen/activity_horizontal_margin">
 
+            <!--EMAIL -->
             <ImageView
                 android:id="@+id/ivContactItem3"
                 android:layout_width="wrap_content"
@@ -68,7 +108,7 @@
                 android:layout_centerHorizontal="true"
                 android:ellipsize="end"
                 android:maxLines="1"
-                android:text="chintan@letsnurture.com"
+
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 android:textColor="#212121" />
 
@@ -122,6 +162,14 @@
         </RelativeLayout>
 
         <include layout="@layout/item_divider" />
+
+        <Button
+            android:id="@+id/buttonLogout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginTop="8dp"
+            android:text="Logout" />
 
     </LinearLayout>
 
