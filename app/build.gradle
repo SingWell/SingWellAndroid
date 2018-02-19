@@ -46,4 +46,7 @@ dependencies {
 
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
 
+    //for circle profile image
+    compile 'de.hdodenhof:circleimageview:1.2.1'
+
 }

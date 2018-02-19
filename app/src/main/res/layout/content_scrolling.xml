@@ -10,45 +10,40 @@
     tools:context="com.example.vbarboza.singwell2.ProfileActivity"
     tools:showIn="@layout/activity_profile">
 
-
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
         <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="?attr/selectableItemBackground"
-        android:clickable="true"
-        android:padding="@dimen/activity_horizontal_margin">
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?attr/selectableItemBackground"
+            android:clickable="true"
+            android:padding="@dimen/activity_horizontal_margin">
 
 
-            <!--USER Full name-->
+                <!--USER Full name-->
+            <ImageView
+                android:id="@+id/ivContactItem1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="@dimen/activity_horizontal_margin"
+                android:layout_marginRight="@dimen/activity_horizontal_margin"
+                android:src="@drawable/perm_contact_calendar_black_24x24"/>
 
-
-        <ImageView
-        android:id="@+id/ivContactItem1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        android:layout_marginEnd="@dimen/activity_horizontal_margin"
-        android:layout_marginRight="@dimen/activity_horizontal_margin"
-            android:textColor="#212121"
-            android:src="@drawable/perm_contact_calendar_black_24x24"/>
-
-        <TextView
-        android:id="@+id/tvNumber1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/activity_horizontal_margin"
-        android:layout_marginStart="@dimen/activity_horizontal_margin"
-        android:layout_toEndOf="@id/tvNumber1"
-        android:layout_toRightOf="@id/tvNumber1"
-            android:textStyle="bold|italic"
-        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        android:textColor="#212121" />
+            <TextView
+                android:id="@+id/tvNumber1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:textStyle="italic|normal"
+                android:textSize="24dp"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textColor="#212121" />
 
         </RelativeLayout>
 
@@ -76,9 +71,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/activity_horizontal_margin"
                 android:layout_marginStart="@dimen/activity_horizontal_margin"
-                android:layout_toEndOf="@id/ivContactItem2"
-                android:layout_toRightOf="@id/ivContactItem2"
-
+                android:layout_toEndOf="@id/tvNumber2"
+                android:layout_toRightOf="@id/tvNumber2"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 android:textColor="#212121" />
 
@@ -108,7 +102,6 @@
                 android:layout_centerHorizontal="true"
                 android:ellipsize="end"
                 android:maxLines="1"
-
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 android:textColor="#212121" />
 

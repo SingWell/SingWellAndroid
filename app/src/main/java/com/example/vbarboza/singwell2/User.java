@@ -6,14 +6,23 @@ package com.example.vbarboza.singwell2;
  */
 
 public class User {
-    private String email, id, token, firstName, lastName, cellNumber;
+    private String email, id, token, firstName, lastName;// cellNumber;
 
-    public User(String email, String id, String token,String firstName, String lastName, String cellNumber){
+    public User(String email, String id, String token,String firstName, String lastName) {// String cellNumber){
 
         this.token = token;
         this.id = id;
         this.email = email;
-        this.cellNumber = cellNumber;
+        //this.cellNumber = cellNumber;
+        this.lastName = lastName;
+        this.firstName = firstName;
+    }
+
+    public User(String email, String id,String firstName, String lastName) {// String cellNumber){
+
+        this.id = id;
+        this.email = email;
+        //this.cellNumber = cellNumber;
         this.lastName = lastName;
         this.firstName = firstName;
     }
@@ -52,15 +61,15 @@ public class User {
 
     public String getFullName() {
 
-        return firstName + lastName;
+        return firstName + " " + lastName;
     }
 
-    public String getCellNumber() {
-
-        if (cellNumber != "")
-            return cellNumber;
-        else
-            return "No cell phone number on file";
-    }
+//    public String getCellNumber() {
+//
+//        if (cellNumber != "")
+//            return cellNumber;
+//        else
+//            return "No cell phone number on file";
+//    }
 
 }
