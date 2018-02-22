@@ -15,17 +15,8 @@
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
         android:textSize="45dp"
-        android:text="SingWell"
+        android:text="@string/singwell"
         android:textStyle="bold"/>
-
-    <!--<TextView-->
-        <!--android:layout_below="@id/label"-->
-        <!--android:layout_centerInParent="true"-->
-        <!--android:layout_width="fill_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:textSize="45dp"-->
-        <!--android:layout_marginTop="10dp"-->
-        <!--android:gravity="center_horizontal"-->
-        <!--android:text="SingWell" />-->
+    
 
 </RelativeLayout>

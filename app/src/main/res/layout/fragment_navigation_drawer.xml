@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@android:color/white">
-
 
     <RelativeLayout
         android:id="@+id/nav_header_container"
@@ -14,18 +12,17 @@
         android:layout_alignParentTop="true"
         android:background="@color/colorPrimary">
 
-        <ImageView
-            android:layout_width="70dp"
-            android:layout_height="70dp"
-            android:layout_centerInParent="true"
-            android:scaleType="fitCenter"
-            android:src="@drawable/profile"
-            />
+        <!--<ImageView-->
+            <!--android:layout_width="70dp"-->
+            <!--android:layout_height="70dp"-->
+            <!--android:layout_centerInParent="true"-->
+            <!--android:scaleType="fitCenter"-->
+            <!--android:src="@drawable/profile"-->
+            <!--/>-->
         <!--make icon clickable for login   android:background="@null"
             android:onClick="scrollToTop" ImageButton-->
 
     </RelativeLayout>
-
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/drawerList"
