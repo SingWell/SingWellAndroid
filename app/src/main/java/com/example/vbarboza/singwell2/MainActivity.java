@@ -33,10 +33,9 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
         setSupportActionBar(mToolbar);
 
         progressBar = findViewById(R.id.progressBar);
-
         setSupportActionBar(mToolbar);
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
-        getSupportActionBar().setTitle(getString(R.string.title_home));
+        //getSupportActionBar().setDisplayShowHomeEnabled(true);
+
 
         drawerFragment = (FragmentDrawer)
                 getSupportFragmentManager().findFragmentById(R.id.fragment_navigation_drawer);
@@ -210,32 +209,30 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
         switch (position) {
             case 0:
                 startActivity(new Intent(this, HomeActivity.class));
-                title = getString(R.string.title_home);
+
                 break;
             case 1:
                 startActivity(new Intent(this, ChoirListLActivity.class));
-                title = getString(R.string.title_choirs);
+
                 break;
             case 2:
                 startActivity(new Intent(this, ProfileActivity.class));
-                title = getString(R.string.title_profile);
+
                 break;
             case 3:
                 //Intent startLoginActivity = new Intent(this, LoginActivity.class);
                 startActivity(new Intent(this, LoginActivity.class));
                 //startActivity(new Intent(this, LoginActivity.class));
-                title = getString(R.string.title_login);
+
                 break;
             case 4:
                 startActivity(new Intent(this, RegisterActivity.class));
-                title = getString(R.string.title_Register);
+
                 break;
             default:
                 break;
         }
 
-        // set the toolbar title
-        getSupportActionBar().setTitle(title);
 
     }
 
