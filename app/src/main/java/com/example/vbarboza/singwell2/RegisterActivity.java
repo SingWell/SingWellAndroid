@@ -192,14 +192,17 @@ public class RegisterActivity extends AppCompatActivity implements FragmentDrawe
                 break;
             case 2:
                 startActivity(new Intent(this, ProfileActivity.class));
+                title = getString(R.string.title_profile);
                 break;
             case 3:
                 //Intent startLoginActivity = new Intent(this, LoginActivity.class);
                 startActivity(new Intent(this, LoginActivity.class));
                 //startActivity(new Intent(this, LoginActivity.class));
+                title = getString(R.string.title_login);
                 break;
             case 4:
                 startActivity(new Intent(this, RegisterActivity.class));
+                title = getString(R.string.title_Register);
                 break;
             default:
                 break;

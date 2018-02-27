@@ -36,6 +36,7 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
 
         setSupportActionBar(mToolbar);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setTitle(getString(R.string.title_home));
 
         drawerFragment = (FragmentDrawer)
                 getSupportFragmentManager().findFragmentById(R.id.fragment_navigation_drawer);
@@ -198,10 +199,10 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
         return super.onOptionsItemSelected(item);
     }
 
+
     @Override
     public void onDrawerItemSelected(View view, int position) {
         displayView(position);
-
     }
 
     private void displayView(int position) {
@@ -217,21 +218,24 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
                 break;
             case 2:
                 startActivity(new Intent(this, ProfileActivity.class));
+                title = getString(R.string.title_profile);
                 break;
             case 3:
                 //Intent startLoginActivity = new Intent(this, LoginActivity.class);
                 startActivity(new Intent(this, LoginActivity.class));
                 //startActivity(new Intent(this, LoginActivity.class));
+                title = getString(R.string.title_login);
                 break;
             case 4:
                 startActivity(new Intent(this, RegisterActivity.class));
+                title = getString(R.string.title_Register);
                 break;
             default:
                 break;
         }
 
-            // set the toolbar title
-            getSupportActionBar().setTitle(title);
+        // set the toolbar title
+        getSupportActionBar().setTitle(title);
 
     }
 
