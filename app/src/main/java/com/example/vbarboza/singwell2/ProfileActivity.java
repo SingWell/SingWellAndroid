@@ -27,10 +27,13 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
-public class ProfileActivity extends AppCompatActivity {
+public class ProfileActivity extends AppCompatActivity implements FragmentDrawer.FragmentDrawerListener {
 
     TextView textViewName, textViewLastName, textViewCellNumber, textViewEmail, textViewFullName, textViewId;
     Button buttonLogout;
+
+    private Toolbar mToolbar;
+    private FragmentDrawer drawerFragment;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -38,7 +41,17 @@ public class ProfileActivity extends AppCompatActivity {
         setContentView(R.layout.activity_profile);
 
         System.out.println("******************INSIDE PROFILE ACTIVITY*************");
-        Toolbar toolbar = findViewById(R.id.toolbar);
+        mToolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(mToolbar);
+        setSupportActionBar(mToolbar);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+
+
+        drawerFragment = (FragmentDrawer)
+                getSupportFragmentManager().findFragmentById(R.id.fragment_navigation_drawer);
+        drawerFragment.setUp(R.id.fragment_navigation_drawer, (DrawerLayout) findViewById(R.id.drawer_layout), mToolbar);
+        drawerFragment.setDrawerListener(this);
+
 
         buttonLogout= findViewById(R.id.buttonLogout);
 
@@ -180,6 +193,43 @@ public class ProfileActivity extends AppCompatActivity {
             }
         });
     }
+
+    @Override
+    public void onDrawerItemSelected(View view, int position) {
+        displayView(position);
+    }
+
+    private void displayView(int position) {
+        String title = getString(R.string.app_name);
+        switch (position) {
+            case 0:
+                startActivity(new Intent(this, HomeActivity.class));
+                title = getString(R.string.title_home);
+                break;
+            case 1:
+                startActivity(new Intent(this, ChoirListLActivity.class));
+                title = getString(R.string.title_choirs);
+                break;
+            case 2:
+                startActivity(new Intent(this, ProfileActivity.class));
+                break;
+            case 3:
+                //Intent startLoginActivity = new Intent(this, LoginActivity.class);
+                startActivity(new Intent(this, LoginActivity.class));
+                //startActivity(new Intent(this, LoginActivity.class));
+                break;
+            case 4:
+                startActivity(new Intent(this, RegisterActivity.class));
+                break;
+            default:
+                break;
+        }
+
+        // set the toolbar title
+        getSupportActionBar().setTitle(title);
+
+    }
+
 }
 
 

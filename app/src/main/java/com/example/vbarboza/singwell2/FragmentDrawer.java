@@ -20,7 +20,6 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 import java.util.List;
 
-
 public class FragmentDrawer extends Fragment {
 
     private static String TAG = FragmentDrawer.class.getSimpleName();

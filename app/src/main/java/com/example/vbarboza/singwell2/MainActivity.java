@@ -8,27 +8,12 @@ import android.support.v7.widget.Toolbar;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
-import android.util.Patterns;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.text.TextUtils;
-import android.widget.Button;
 import android.widget.Toast;
 import android.widget.EditText;
 import android.widget.ProgressBar;
-
-import com.android.volley.AuthFailureError;
-import com.android.volley.Request;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
-
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.util.HashMap;
-import java.util.Map;
 
 public class MainActivity extends AppCompatActivity implements FragmentDrawer.FragmentDrawerListener {
 
@@ -220,15 +205,14 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
     }
 
     private void displayView(int position) {
-        Fragment fragment = null;
         String title = getString(R.string.app_name);
         switch (position) {
             case 0:
-                fragment = new HomeFragment();
+                startActivity(new Intent(this, HomeActivity.class));
                 title = getString(R.string.title_home);
                 break;
             case 1:
-                fragment = new ChoirListLFragment();
+                startActivity(new Intent(this, ChoirListLActivity.class));
                 title = getString(R.string.title_choirs);
                 break;
             case 2:
@@ -246,15 +230,9 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
                 break;
         }
 
-        if (fragment != null) {
-            FragmentManager fragmentManager = getSupportFragmentManager();
-            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-            fragmentTransaction.replace(R.id.container_body, fragment);
-            fragmentTransaction.commit();
-
             // set the toolbar title
             getSupportActionBar().setTitle(title);
-        }
+
     }
 
 
