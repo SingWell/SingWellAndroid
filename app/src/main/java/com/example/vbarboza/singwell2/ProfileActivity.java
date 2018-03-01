@@ -40,12 +40,12 @@ public class ProfileActivity extends AppCompatActivity implements FragmentDrawer
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
 
+        //REMOVE, for debug purpose only
         System.out.println("******************INSIDE PROFILE ACTIVITY*************");
+
         mToolbar = findViewById(R.id.toolbar);
         mToolbar.setTitle("Profile");
         setSupportActionBar(mToolbar);
-        //getSupportActionBar().setDisplayShowHomeEnabled(true);
-
 
         drawerFragment = (FragmentDrawer)
                 getSupportFragmentManager().findFragmentById(R.id.fragment_navigation_drawer);
@@ -61,11 +61,10 @@ public class ProfileActivity extends AppCompatActivity implements FragmentDrawer
             startActivity(new Intent(this, LoginActivity.class));
         }
 
-
-        buttonLogout = findViewById(R.id.buttonLogout);
-
         //getting current user
         User user = SharedPrefManager.getInstance(this).getUser();
+
+        //REMOVE, for debug purpose only
         //System.out.println("Full name: " + user.getFullName());
         System.out.println("id: " + user.getId());
         System.out.println("full name: " + user.getFullName());
@@ -77,18 +76,15 @@ public class ProfileActivity extends AppCompatActivity implements FragmentDrawer
                     @Override
                     public void onResponse(String response) {
 
+                        //REMOVE, for debug purpose only
                         System.out.println("inside Profile onResponse()****************************");
 
-                        //progressBar.setVisibility(View.GONE)
+                        //REMOVE, for debug purpose only
                         System.out.println("Response: " + response);
-                        //requestQueue.stop();
 
                         try {
                             //converting response to json object
                             JSONObject obj = new JSONObject(response);
-    //
-    //                                            if (!obj.getBoolean("error")) {
-    //                                                Toast.makeText(getApplicationContext(), obj.getString("message"), Toast.LENGTH_SHORT).show();
 
                             System.out.println("JSON obj: " + obj);
                             String email = obj.getString("email");
@@ -122,15 +118,8 @@ public class ProfileActivity extends AppCompatActivity implements FragmentDrawer
                             //textViewId.setText(user.getId());
 
                             //storing the user in shared preferences
-                            //SharedPrefManager.getInstance(getApplicationContext()).userLogin(user);
+                            SharedPrefManager.getInstance(getApplicationContext()).userLogin(user);
 
-                            //starting the profile activity
-//                            finish();
-//                            startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
-
-//                                            } else {
-//                                                Toast.makeText(LoginActivity.this, obj.getString("message"), Toast.LENGTH_SHORT).show();
-//                                            }
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
@@ -144,9 +133,6 @@ public class ProfileActivity extends AppCompatActivity implements FragmentDrawer
             Toast toast = Toast.makeText(ProfileActivity.this, "No profile in file",Toast.LENGTH_SHORT);
             toast.setGravity(Gravity.TOP, 0, 0);
             toast.show();
-//            editTextEmail.setText("");
-//            editTextPassword.setText("");
-
         }
 
         })
@@ -165,7 +151,6 @@ public class ProfileActivity extends AppCompatActivity implements FragmentDrawer
 
 
         VolleySingleton.getInstance(ProfileActivity.this).addToRequestQueue(stringRequest);
-    //}
 
         //when the user presses logout button
         //calling the logout method
@@ -186,9 +171,9 @@ public class ProfileActivity extends AppCompatActivity implements FragmentDrawer
                 editor.clear();
                 editor.apply();
 
-                startActivity(new Intent(ProfileActivity.this,MainActivity.class));
-                finish();
-
+                //Switch to Home screen after logging out
+                startActivity(new Intent(ProfileActivity.this, HomeActivity.class));
+                //REMOVE, for debug purpose only
                 System.out.println("!!!!!!!!!!!!!!LOGOUT!!!!!!!!!!!!!");
             }
         });

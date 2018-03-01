@@ -36,10 +36,7 @@ public class HomeActivity extends AppCompatActivity implements FragmentDrawer.Fr
         drawerFragment.setUp(R.id.fragment_navigation_drawer, (DrawerLayout) findViewById(R.id.drawer_layout), mToolbar);
         drawerFragment.setDrawerListener(this);
 
-
-
     }
-
 
     @Override
     public void onDrawerItemSelected(View view, int position) {
@@ -57,6 +54,7 @@ public class HomeActivity extends AppCompatActivity implements FragmentDrawer.Fr
 
                 break;
             case 2:
+
                 startActivity(new Intent(this, ProfileActivity.class));
 
                 break;

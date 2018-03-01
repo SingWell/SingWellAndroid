@@ -37,11 +37,13 @@ import java.util.Map;
 
 public class LoginActivity extends AppCompatActivity implements FragmentDrawer.FragmentDrawerListener{
 
+    public final static String MyPREFERENCES = "MyPrefs";
     private EditText editTextUsername;
     private EditText editTextEmail;
     private EditText editTextPassword;
     Button buttonLogin;
     TextView textView;
+    SharedPrefManager sharedPrefManager;
 
     private Toolbar mToolbar;
     private FragmentDrawer drawerFragment;
@@ -56,11 +58,14 @@ public class LoginActivity extends AppCompatActivity implements FragmentDrawer.F
         setSupportActionBar(mToolbar);
         //getSupportActionBar().setDisplayShowHomeEnabled(true);
 
+        //sharedPrefManager = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
+
 
         drawerFragment = (FragmentDrawer)
                 getSupportFragmentManager().findFragmentById(R.id.fragment_navigation_drawer);
         drawerFragment.setUp(R.id.fragment_navigation_drawer, (DrawerLayout) findViewById(R.id.drawer_layout), mToolbar);
         drawerFragment.setDrawerListener(this);
+
 
         LoginButton();
 
