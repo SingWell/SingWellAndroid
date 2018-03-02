@@ -1,5 +1,6 @@
 package com.example.vbarboza.singwell2;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -12,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 
+import android.content.SharedPreferences;
 import java.util.ArrayList;
 
 /**
@@ -24,9 +26,14 @@ public class ChoirListLActivity extends AppCompatActivity implements FragmentDra
     private static final String TAG = "ChoirListFragment";
 
     private ListView choirsListView;
-
     private Toolbar mToolbar;
     private FragmentDrawer drawerFragment;
+
+    SharedPreferences sharedPreferences;
+
+
+    User user;
+    //String id  = user.getId();
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -38,6 +45,16 @@ public class ChoirListLActivity extends AppCompatActivity implements FragmentDra
         setSupportActionBar(mToolbar);
         //getSupportActionBar().setDisplayShowHomeEnabled(true);
 
+        sharedPreferences = getSharedPreferences("loginPrefs", Context.MODE_PRIVATE);
+        //sharedPreferences.getString("id", null);
+        System.out.println("sharedPreferences: " + sharedPreferences.getString("id", null).toString());
+
+
+        //if user is not logged in, start the login activity
+//        if (!SharedPrefManager.getInstance(this).isLoggedIn()) {
+//            finish();
+//            startActivity(new Intent(this, LoginActivity.class));
+//        }
 
         drawerFragment = (FragmentDrawer)
                 getSupportFragmentManager().findFragmentById(R.id.fragment_navigation_drawer);
@@ -80,6 +97,14 @@ public class ChoirListLActivity extends AppCompatActivity implements FragmentDra
 
                 break;
             case 2:
+//                if (!(sharedPreferences.getString("id", null) == null)) {
+//                //if (sharedPreferences.getString("id", null)){
+//                    finish();
+//                    startActivity(new Intent(this, ProfileActivity.class));
+//                    return;
+//                } else{
+//                    System.out.println("NOT LOGGED IN");
+//                }
                 startActivity(new Intent(this, ProfileActivity.class));
 
                 break;

@@ -31,7 +31,8 @@ public class ProfileActivity extends AppCompatActivity implements FragmentDrawer
 
     TextView textViewName, textViewLastName, textViewCellNumber, textViewEmail, textViewFullName, textViewId;
     Button buttonLogout;
-
+    User user;
+    SharedPreferences sharedPreferences;
     private Toolbar mToolbar;
     private FragmentDrawer drawerFragment;
 
@@ -39,6 +40,9 @@ public class ProfileActivity extends AppCompatActivity implements FragmentDrawer
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
+        sharedPreferences = getSharedPreferences("loginPrefs", Context.MODE_PRIVATE);
+
+
 
         //REMOVE, for debug purpose only
         System.out.println("******************INSIDE PROFILE ACTIVITY*************");
@@ -55,23 +59,32 @@ public class ProfileActivity extends AppCompatActivity implements FragmentDrawer
 
         buttonLogout= findViewById(R.id.buttonLogout);
 
-        //if user is not logged in, start the login activity
-        if (!SharedPrefManager.getInstance(this).isLoggedIn()) {
-            finish();
-            startActivity(new Intent(this, LoginActivity.class));
-        }
+        user = SharedPrefManager.getInstance(this).getUser();
 
-        //getting current user
-        User user = SharedPrefManager.getInstance(this).getUser();
+        //if user is not logged in, start the login activity
+//        if (sharedPreferences.getString("id", "id").toString() == null) {
+//            finish();
+//            startActivity(new Intent(this, LoginActivity.class));
+//            return;
+//        }
+
+        //if user is not logged in, start the login activity
+
+//        if (sharedPreferences.getString("id", "id").toString() != null){
+//            System.out.println("id: " + sharedPreferences.getString("id", "id").toString());
+//        } else if (!SharedPrefManager.getInstance(this).isLoggedIn()) {
+//            finish();
+//            startActivity(new Intent(this, LoginActivity.class));
+//        }
 
         //REMOVE, for debug purpose only
         //System.out.println("Full name: " + user.getFullName());
-        System.out.println("id: " + user.getId());
+        System.out.println("id: " + sharedPreferences.getString("id", "id").toString());
         System.out.println("full name: " + user.getFullName());
 
 
 
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, URLs.URL_USERS + user.getId(),
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, URLs.URL_USERS + sharedPreferences.getString("id", "id").toString(),
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
@@ -130,6 +143,7 @@ public class ProfileActivity extends AppCompatActivity implements FragmentDrawer
         public void onErrorResponse(VolleyError error) {
             System.out.println("Error response!!!!!!!!!!!!!!! " );
             error.printStackTrace();
+            startActivity(new Intent(ProfileActivity.this, LoginActivity.class));
             Toast toast = Toast.makeText(ProfileActivity.this, "No profile in file",Toast.LENGTH_SHORT);
             toast.setGravity(Gravity.TOP, 0, 0);
             toast.show();
@@ -165,7 +179,7 @@ public class ProfileActivity extends AppCompatActivity implements FragmentDrawer
         buttonLogout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // Launching News Feed Screen
+
                 SharedPreferences preferences = getSharedPreferences("loginPrefs", Context.MODE_PRIVATE);
                 SharedPreferences.Editor editor = preferences.edit();
                 editor.clear();
@@ -191,6 +205,10 @@ public class ProfileActivity extends AppCompatActivity implements FragmentDrawer
 
                 break;
             case 1:
+//                if (SharedPrefManager.getInstance(this).isLoggedIn()) {
+//                    finish();
+//                    startActivity(new Intent(this, ChoirListLActivity.class));
+//                }
                 startActivity(new Intent(this, ChoirListLActivity.class));
 
                 break;
