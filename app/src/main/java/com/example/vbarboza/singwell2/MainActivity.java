@@ -1,5 +1,6 @@
 package com.example.vbarboza.singwell2;
 
+import android.content.SharedPreferences;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -25,6 +26,7 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
     EditText editTextUsername, editTextEmail, editTextPassword;
     ProgressBar progressBar;
 
+    SharedPreferences sharedPreferences;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,12 +50,12 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
         displayView(0);
 
         //if the user is already logged in we will directly start the profile activity
-//        if (SharedPrefManager.getInstance(this).isLoggedIn()) {
-//            finish();
-//            Intent intent = new Intent(this, ProfileActivity.class);
-//            startActivity(intent);
-//            return;
-//        }
+        if (SharedPrefManager.getInstance(this).isLoggedIn()) {
+            finish();
+            Intent intent = new Intent(this, ProfileActivity.class);
+            startActivity(intent);
+            return;
+        }
 
         //editTextUsername = findViewById(R.id.editTextUsername);
         editTextEmail = findViewById(R.id.editTextEmail);
@@ -216,7 +218,15 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
 
                 break;
             case 2:
-                startActivity(new Intent(this, ProfileActivity.class));
+                if (sharedPreferences.getString("id", "id").toString() == null) {
+                    startActivity(new Intent(this, LoginActivity.class));
+
+                    System.out.println("main activity menu: id=null");
+                } else {
+                    startActivity(new Intent(this, ProfileActivity.class));
+                    System.out.println("main activity menu: id !=null");
+
+                }
 
                 break;
             case 3:

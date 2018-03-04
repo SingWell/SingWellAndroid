@@ -23,7 +23,7 @@
             android:padding="@dimen/activity_horizontal_margin">
 
 
-                <!--USER Full name-->
+                <!--USER FULL NAME-->
             <ImageView
                 android:id="@+id/ivContactItem1"
                 android:layout_width="wrap_content"
@@ -49,6 +49,36 @@
 
         <include layout="@layout/item_divider" />
 
+        <!--DATE OF BIRTH-->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?attr/selectableItemBackground"
+            android:clickable="true"
+            android:padding="@dimen/activity_horizontal_margin">
+
+            <ImageView
+                android:id="@+id/ivContactItem6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:src="@drawable/ic_cake_black_18dp" />
+
+            <TextView
+                android:id="@+id/tvNumber6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textColor="#212121" />
+
+        </RelativeLayout>
+
+        <include layout="@layout/item_divider" />
+
+        <!--PHONE NUMBER-->
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -69,10 +99,10 @@
                 android:id="@+id/tvNumber2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
                 android:layout_marginLeft="@dimen/activity_horizontal_margin"
                 android:layout_marginStart="@dimen/activity_horizontal_margin"
-                android:layout_toEndOf="@id/tvNumber2"
-                android:layout_toRightOf="@id/tvNumber2"
+                android:inputType="phone"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 android:textColor="#212121" />
 
@@ -80,6 +110,7 @@
 
         <include layout="@layout/item_divider" />
 
+        <!--EMAIL-->
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -87,7 +118,6 @@
             android:clickable="true"
             android:padding="@dimen/activity_horizontal_margin">
 
-            <!--EMAIL -->
             <ImageView
                 android:id="@+id/ivContactItem3"
                 android:layout_width="wrap_content"
@@ -109,6 +139,80 @@
 
         <include layout="@layout/item_divider" />
 
+        <!--ADDRESS-->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?attr/selectableItemBackground"
+            android:clickable="true"
+            android:padding="@dimen/activity_horizontal_margin">
+
+            <ImageView
+                android:id="@+id/ivContactItem4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="@dimen/activity_horizontal_margin"
+                android:layout_marginRight="@dimen/activity_horizontal_margin"
+                android:src="@drawable/ic_room_black_18dp" />
+
+            <TextView
+                android:id="@+id/tvNumber4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginStart="@dimen/activity_horizontal_margin"
+                android:layout_marginBottom="-10dp"
+                android:gravity="center_horizontal"
+                android:textAlignment="gravity"
+                android:inputType="textMultiLine"
+                android:lines="3"
+                android:textSize="18dp"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textColor="#212121" />
+
+        </RelativeLayout>
+
+        <include layout="@layout/item_divider" />
+
+        <!--BIO-->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?attr/selectableItemBackground"
+            android:clickable="true"
+            android:padding="@dimen/activity_horizontal_margin">
+
+            <ImageView
+                android:id="@+id/ivContactItem5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="@dimen/activity_horizontal_margin"
+                android:layout_marginRight="@dimen/activity_horizontal_margin"
+                android:src="@drawable/biography"/>
+
+            <TextView
+                android:id="@+id/tvNumber5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="64dp"
+                android:layout_marginStart="@dimen/activity_horizontal_margin"
+                android:gravity="center_horizontal"
+                android:textAlignment="gravity"
+                android:inputType="textMultiLine"
+                android:maxLines="10"
+                android:textSize="18dp"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textColor="#212121" />
+
+        </RelativeLayout>
+
+        <include layout="@layout/item_divider" />
+
+
+
+        <!--INSTRUMENTS-->
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
