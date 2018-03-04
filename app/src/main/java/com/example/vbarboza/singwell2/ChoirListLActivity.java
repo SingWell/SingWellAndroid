@@ -43,11 +43,10 @@ public class ChoirListLActivity extends AppCompatActivity implements FragmentDra
         mToolbar = findViewById(R.id.toolbar);
         mToolbar.setTitle("Choirs");
         setSupportActionBar(mToolbar);
-        //getSupportActionBar().setDisplayShowHomeEnabled(true);
 
         sharedPreferences = getSharedPreferences("loginPrefs", Context.MODE_PRIVATE);
         //sharedPreferences.getString("id", null);
-        System.out.println("sharedPreferences: " + sharedPreferences.getString("id", null).toString());
+        //System.out.println("sharedPreferences: " + sharedPreferences.getString("id", null).toString());
 
 
         //if user is not logged in, start the login activity

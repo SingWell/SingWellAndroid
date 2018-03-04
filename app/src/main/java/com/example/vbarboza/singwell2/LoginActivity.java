@@ -42,7 +42,7 @@ import java.util.Map;
 public class LoginActivity extends AppCompatActivity implements FragmentDrawer.FragmentDrawerListener{
 
     public final static String MyPREFERENCES = "MyPrefs";
-    private EditText editTextUsername;
+    private EditText editTextCellPhone;
     private EditText editTextEmail;
     private EditText editTextPassword;
     Button buttonLogin;
@@ -60,7 +60,6 @@ public class LoginActivity extends AppCompatActivity implements FragmentDrawer.F
         mToolbar = findViewById(R.id.toolbar);
         mToolbar.setTitle("Login");
         setSupportActionBar(mToolbar);
-        //getSupportActionBar().setDisplayShowHomeEnabled(true);
 
         getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
 
@@ -256,20 +255,11 @@ public class LoginActivity extends AppCompatActivity implements FragmentDrawer.F
 
                 break;
             case 2:
-
-//                if (SharedPrefManager.getInstance(this).isLoggedIn()) {
-//                    finish();
-//                    startActivity(new Intent(this, ProfileActivity.class));
-//                    return;
-//                }
                 startActivity(new Intent(this, ProfileActivity.class));
 
                 break;
             case 3:
-                //Intent startLoginActivity = new Intent(this, LoginActivity.class);
-
                 startActivity(new Intent(this, LoginActivity.class));
-                //startActivity(new Intent(this, LoginActivity.class));
 
                 break;
             case 4:

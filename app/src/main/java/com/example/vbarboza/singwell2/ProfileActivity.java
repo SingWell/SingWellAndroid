@@ -6,6 +6,8 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
+import android.telephony.PhoneNumberFormattingTextWatcher;
+import android.telephony.PhoneNumberUtils;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -29,12 +31,15 @@ import java.util.Map;
 
 public class ProfileActivity extends AppCompatActivity implements FragmentDrawer.FragmentDrawerListener {
 
-    TextView textViewName, textViewLastName, textViewCellNumber, textViewEmail, textViewFullName, textViewId;
+    TextView textViewCellNumber, textViewEmail, textViewFullName, textViewBio, textViewAddress1, textViewAddress2, textViewCity, textViewZip, textViewState, textViewAge;
     Button buttonLogout;
     User user;
+    String fullAddress1;
+    String fullAddress2;
     SharedPreferences sharedPreferences;
     private Toolbar mToolbar;
     private FragmentDrawer drawerFragment;
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -42,6 +47,11 @@ public class ProfileActivity extends AppCompatActivity implements FragmentDrawer
         setContentView(R.layout.activity_profile);
         sharedPreferences = getSharedPreferences("loginPrefs", Context.MODE_PRIVATE);
 
+        //If user id is not a number, no user is logged in, redirect to LoginActivity
+        if (sharedPreferences.getString("id", "id").toString() == "id"){
+            System.out.println("id: " + sharedPreferences.getString("id", "id").toString());
+            startActivity(new Intent(this, LoginActivity.class));
+        }
 
 
         //REMOVE, for debug purpose only
@@ -61,28 +71,11 @@ public class ProfileActivity extends AppCompatActivity implements FragmentDrawer
 
         user = SharedPrefManager.getInstance(this).getUser();
 
-        //if user is not logged in, start the login activity
-//        if (sharedPreferences.getString("id", "id").toString() == null) {
-//            finish();
-//            startActivity(new Intent(this, LoginActivity.class));
-//            return;
-//        }
-
-        //if user is not logged in, start the login activity
-
-//        if (sharedPreferences.getString("id", "id").toString() != null){
-//            System.out.println("id: " + sharedPreferences.getString("id", "id").toString());
-//        } else if (!SharedPrefManager.getInstance(this).isLoggedIn()) {
-//            finish();
-//            startActivity(new Intent(this, LoginActivity.class));
-//        }
 
         //REMOVE, for debug purpose only
         //System.out.println("Full name: " + user.getFullName());
         System.out.println("id: " + sharedPreferences.getString("id", "id").toString());
         System.out.println("full name: " + user.getFullName());
-
-
 
         StringRequest stringRequest = new StringRequest(Request.Method.GET, URLs.URL_USERS + sharedPreferences.getString("id", "id").toString(),
                 new Response.Listener<String>() {
@@ -110,8 +103,29 @@ public class ProfileActivity extends AppCompatActivity implements FragmentDrawer
 //                            System.out.println("token: " + token);
                             String id = obj.getString("id");
                             System.out.println("Id: " + id);
-                            //String cell = obj.getString("cell")
-                            //textViewEmail = findViewById(R.id.editTextEmail);
+                            JSONObject profile = obj.getJSONObject("profile");
+                            String phone_number = profile.getString("phone_number");
+                            System.out.println("profile: " + profile);
+                            System.out.println("Cell: " + phone_number);
+                            String formattedPhone = PhoneNumberUtils.formatNumber(phone_number, "US");
+                            String address = profile.getString("address");
+                            System.out.println("address: " + address);
+                            String city = profile.getString("city");
+                            System.out.println("city: " + city);
+                            String state = profile.getString("state");
+                            System.out.println("state: " + state);
+                            String zip = profile.getString("zip_code");
+                            System.out.println("zip_code: " + zip);
+                            fullAddress1 = address;
+                            fullAddress2 = city + ", " + state.toUpperCase() + " " + zip;
+                            System.out.println("full address1: " + fullAddress1);
+                            System.out.println("full address2: " + fullAddress2);
+                            String bio = profile.getString("bio");
+                            System.out.println("bio: " + bio);
+                            String age = profile.getString("age");
+                            System.out.println("age: " + age);
+
+
 
                             //creating a new user object
                             User user = new User(email, id, firstName, lastName);
@@ -123,12 +137,19 @@ public class ProfileActivity extends AppCompatActivity implements FragmentDrawer
 
 
                             textViewFullName = findViewById(R.id.tvNumber1);
-                            //textViewCellNumber = findViewById(R.id.)
+                            textViewCellNumber = findViewById(R.id.tvNumber2);
                             textViewEmail = findViewById(R.id.tvNumber3);
+                            textViewAddress1 = findViewById(R.id.tvNumber4);
+                            textViewAddress2 = findViewById(R.id.tvNumber4_2);
+                            textViewBio = findViewById(R.id.tvNumber5);
+
                             //setting the values to the textviews
                             textViewFullName.setText(user.getFullName());
                             textViewEmail.setText(user.getEmail());
-                            //textViewId.setText(user.getId());
+                            textViewCellNumber.setText(formattedPhone);
+                            textViewAddress1.setText(fullAddress1);
+                            textViewAddress2.setText(fullAddress2);
+                            textViewBio.setText(bio);
 
                             //storing the user in shared preferences
                             SharedPrefManager.getInstance(getApplicationContext()).userLogin(user);
@@ -205,10 +226,6 @@ public class ProfileActivity extends AppCompatActivity implements FragmentDrawer
 
                 break;
             case 1:
-//                if (SharedPrefManager.getInstance(this).isLoggedIn()) {
-//                    finish();
-//                    startActivity(new Intent(this, ChoirListLActivity.class));
-//                }
                 startActivity(new Intent(this, ChoirListLActivity.class));
 
                 break;
@@ -217,9 +234,7 @@ public class ProfileActivity extends AppCompatActivity implements FragmentDrawer
 
                 break;
             case 3:
-                //Intent startLoginActivity = new Intent(this, LoginActivity.class);
                 startActivity(new Intent(this, LoginActivity.class));
-                //startActivity(new Intent(this, LoginActivity.class));
 
                 break;
             case 4:
