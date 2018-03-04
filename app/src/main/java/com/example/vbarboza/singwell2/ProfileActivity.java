@@ -55,6 +55,7 @@ public class ProfileActivity extends AppCompatActivity implements FragmentDrawer
 
         buttonLogout= findViewById(R.id.buttonLogout);
 
+
         //if user is not logged in, start the login activity
         if (!SharedPrefManager.getInstance(this).isLoggedIn()) {
             finish();
@@ -69,7 +70,6 @@ public class ProfileActivity extends AppCompatActivity implements FragmentDrawer
         //System.out.println("Full name: " + user.getFullName());
         System.out.println("id: " + user.getId());
         System.out.println("full name: " + user.getFullName());
-
 
 
         StringRequest stringRequest = new StringRequest(Request.Method.GET, URLs.URL_USERS + user.getId(),
