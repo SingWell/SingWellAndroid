@@ -31,7 +31,7 @@ import java.util.Map;
 
 public class ProfileActivity extends AppCompatActivity implements FragmentDrawer.FragmentDrawerListener {
 
-    TextView textViewCellNumber, textViewEmail, textViewFullName, textViewBio, textViewAddress1, textViewAddress2, textViewCity, textViewZip, textViewState, textViewAge;
+    TextView textViewCellNumber, textViewEmail, textViewFullName, textViewBio, textViewAddress1, textViewDOB;
     Button buttonLogout;
     User user;
     String fullAddress1;
@@ -116,23 +116,23 @@ public class ProfileActivity extends AppCompatActivity implements FragmentDrawer
                             System.out.println("state: " + state);
                             String zip = profile.getString("zip_code");
                             System.out.println("zip_code: " + zip);
-                            fullAddress1 = address;
-                            fullAddress2 = city + ", " + state.toUpperCase() + " " + zip;
+                            //fullAddress1 = address;
+                            fullAddress1 = address + "\n" + city + ", " + state.toUpperCase() + " " + zip;
                             System.out.println("full address1: " + fullAddress1);
                             System.out.println("full address2: " + fullAddress2);
                             String bio = profile.getString("bio");
                             System.out.println("bio: " + bio);
                             String age = profile.getString("age");
                             System.out.println("age: " + age);
+                            String dob = profile.getString("date_of_birth");
 
 
 
-                            //creating a new user object
+                            //creating a new user object to store in sharedPreferences
                             User user = new User(email, id, firstName, lastName);
 
                             System.out.println("User id: " + user.getId());
                             System.out.println("User email: " + user.getEmail());
-                            //System.out.println("User token: " + user.getToken());
                             System.out.println("Full name " + user.getFullName());
 
 
@@ -140,16 +140,16 @@ public class ProfileActivity extends AppCompatActivity implements FragmentDrawer
                             textViewCellNumber = findViewById(R.id.tvNumber2);
                             textViewEmail = findViewById(R.id.tvNumber3);
                             textViewAddress1 = findViewById(R.id.tvNumber4);
-                            textViewAddress2 = findViewById(R.id.tvNumber4_2);
                             textViewBio = findViewById(R.id.tvNumber5);
+                            textViewDOB = findViewById(R.id.tvNumber6);
 
-                            //setting the values to the textviews
+                            //setting the values to the textViews
                             textViewFullName.setText(user.getFullName());
                             textViewEmail.setText(user.getEmail());
                             textViewCellNumber.setText(formattedPhone);
                             textViewAddress1.setText(fullAddress1);
-                            textViewAddress2.setText(fullAddress2);
                             textViewBio.setText(bio);
+                            textViewDOB.setText(dob);
 
                             //storing the user in shared preferences
                             SharedPrefManager.getInstance(getApplicationContext()).userLogin(user);
@@ -173,7 +173,6 @@ public class ProfileActivity extends AppCompatActivity implements FragmentDrawer
         })
 
         {
-
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<>();
