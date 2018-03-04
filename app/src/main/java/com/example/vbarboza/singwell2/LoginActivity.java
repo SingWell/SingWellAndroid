@@ -3,6 +3,8 @@ package com.example.vbarboza.singwell2;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.DrawerLayout;
@@ -28,8 +30,10 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
 
 import java.util.HashMap;
 import java.util.Map;
@@ -37,11 +41,13 @@ import java.util.Map;
 
 public class LoginActivity extends AppCompatActivity implements FragmentDrawer.FragmentDrawerListener{
 
-    private EditText editTextUsername;
+    public final static String MyPREFERENCES = "MyPrefs";
+    private EditText editTextCellPhone;
     private EditText editTextEmail;
     private EditText editTextPassword;
     Button buttonLogin;
     TextView textView;
+    SharedPrefManager sharedPrefManager;
 
     private Toolbar mToolbar;
     private FragmentDrawer drawerFragment;
@@ -54,7 +60,8 @@ public class LoginActivity extends AppCompatActivity implements FragmentDrawer.F
         mToolbar = findViewById(R.id.toolbar);
         mToolbar.setTitle("Login");
         setSupportActionBar(mToolbar);
-        //getSupportActionBar().setDisplayShowHomeEnabled(true);
+
+        getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
 
 
         drawerFragment = (FragmentDrawer)
@@ -62,15 +69,17 @@ public class LoginActivity extends AppCompatActivity implements FragmentDrawer.F
         drawerFragment.setUp(R.id.fragment_navigation_drawer, (DrawerLayout) findViewById(R.id.drawer_layout), mToolbar);
         drawerFragment.setDrawerListener(this);
 
+
         LoginButton();
 
         //if the user is already logged in we will directly start the profile activity
         //This will be used to get instance of user already logged in
-//        if (SharedPrefManager.getInstance(this).isLoggedIn()) {
-//            finish();
-//            startActivity(new Intent(this, ProfileActivity.class));
-//            return;
-//        }
+        if (SharedPrefManager.getInstance(this).isLoggedIn()) {
+            finish();
+            startActivity(new Intent(this, ProfileActivity.class));
+            System.out.println("LOGIN ACTIVITY: USER LOGGED IN");
+            return;
+        }
 
         //If the user does not have an account, redirect to Register page
         TextView tvRegister;
@@ -95,10 +104,15 @@ public class LoginActivity extends AppCompatActivity implements FragmentDrawer.F
         buttonLogin = findViewById(R.id.buttonLogin);
         textView = findViewById(R.id.textViewLogin);
 
+
+
         buttonLogin.setOnClickListener(
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+
+                        SharedPreferences preferences = getSharedPreferences("loginPrefs", Context.MODE_PRIVATE);
+                        final Editor editor = preferences.edit();
 
                         System.out.println("inside onClick()****************************");
                         System.out.println("inside URL_LOGIN: " + URLs.URL_LOGIN + " ****************************");
@@ -142,10 +156,23 @@ public class LoginActivity extends AppCompatActivity implements FragmentDrawer.F
 
                                                 System.out.println("JSON obj: " + obj);
                                                 String token = obj.getString("token");
+                                                editor.putString("token", token);
                                                 System.out.println("Token: " + token);
                                                 String id = obj.getString("user_id");
                                                 System.out.println("Id: " + id);
+                                                editor.putString("id", id);
+
+                                                if (obj.has("profile")){
+                                                    System.out.println("HAS PROFILE");
+                                                }else{
+                                                    System.out.println("NO PROFILE in json obj");
+                                                }
+
+//                                                JSONArray ownedOrganizations = obj.getJSONArray("owned_organizations");
+//                                                JSONObject profile = obj.getJSONObject("profile");
+//                                                System.out.println("obj.profile: " + ownedOrganizations);
 //
+
 //                                              String firstName = obj.getString("firstName");
 //                                              System.out.println("First name: " + firstName);
 
@@ -158,13 +185,17 @@ public class LoginActivity extends AppCompatActivity implements FragmentDrawer.F
 
                                                 System.out.println("User id: " + user.getId());
                                                 System.out.println("User email: " + user.getEmail());
+                                                editor.putString("email", user.getEmail());
+                                                editor.commit();
                                                 System.out.println("User token: " + user.getToken());
 
                                                 //storing the user in shared preferences
                                                 SharedPrefManager.getInstance(getApplicationContext()).userLogin(user);
 
+
+
                                                 //starting the profile activity
-                                                finish();
+                                                //finish();
                                                 startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
 
 //                                            } else {
@@ -228,9 +259,7 @@ public class LoginActivity extends AppCompatActivity implements FragmentDrawer.F
 
                 break;
             case 3:
-                //Intent startLoginActivity = new Intent(this, LoginActivity.class);
                 startActivity(new Intent(this, LoginActivity.class));
-                //startActivity(new Intent(this, LoginActivity.class));
 
                 break;
             case 4:
