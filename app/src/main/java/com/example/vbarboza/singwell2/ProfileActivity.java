@@ -6,13 +6,11 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
-import android.telephony.PhoneNumberFormattingTextWatcher;
 import android.telephony.PhoneNumberUtils;
 import android.view.Gravity;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.support.v7.widget.Toolbar;
 import android.widget.Toast;
@@ -35,7 +33,7 @@ public class ProfileActivity extends AppCompatActivity implements FragmentDrawer
     Button buttonLogout;
     User user;
     String fullAddress1;
-    String fullAddress2;
+    ImageView image;
     SharedPreferences sharedPreferences;
     private Toolbar mToolbar;
     private FragmentDrawer drawerFragment;
@@ -92,56 +90,37 @@ public class ProfileActivity extends AppCompatActivity implements FragmentDrawer
                             //converting response to json object
                             JSONObject obj = new JSONObject(response);
 
-                            System.out.println("JSON obj: " + obj);
                             String email = obj.getString("email");
-                            System.out.println("email: " + email);
                             String firstName = obj.getString("first_name");
-                            System.out.println("First name: " + firstName);
                             String lastName = obj.getString("last_name");
-                            System.out.println("Last name: " + lastName);
-//                            String token = obj.getString("token");
-//                            System.out.println("token: " + token);
                             String id = obj.getString("id");
-                            System.out.println("Id: " + id);
+
+                            //extracting profile object from response
                             JSONObject profile = obj.getJSONObject("profile");
+
+                            //Integer profilePic = profile.getInt("profile_picture_link");
                             String phone_number = profile.getString("phone_number");
-                            System.out.println("profile: " + profile);
-                            System.out.println("Cell: " + phone_number);
                             String formattedPhone = PhoneNumberUtils.formatNumber(phone_number, "US");
                             String address = profile.getString("address");
-                            System.out.println("address: " + address);
                             String city = profile.getString("city");
-                            System.out.println("city: " + city);
                             String state = profile.getString("state");
-                            System.out.println("state: " + state);
                             String zip = profile.getString("zip_code");
-                            System.out.println("zip_code: " + zip);
-                            //fullAddress1 = address;
                             fullAddress1 = address + "\n" + city + ", " + state.toUpperCase() + " " + zip;
-                            System.out.println("full address1: " + fullAddress1);
-                            System.out.println("full address2: " + fullAddress2);
                             String bio = profile.getString("bio");
-                            System.out.println("bio: " + bio);
-                            String age = profile.getString("age");
-                            System.out.println("age: " + age);
+                            String age = profile.getString("age"); //ARE WE ADDING AGE TO THE PROFILE?
                             String dob = profile.getString("date_of_birth");
-
-
 
                             //creating a new user object to store in sharedPreferences
                             User user = new User(email, id, firstName, lastName);
 
-                            System.out.println("User id: " + user.getId());
-                            System.out.println("User email: " + user.getEmail());
-                            System.out.println("Full name " + user.getFullName());
-
-
+                            //assign textView ids to variables
                             textViewFullName = findViewById(R.id.tvNumber1);
                             textViewCellNumber = findViewById(R.id.tvNumber2);
                             textViewEmail = findViewById(R.id.tvNumber3);
                             textViewAddress1 = findViewById(R.id.tvNumber4);
                             textViewBio = findViewById(R.id.tvNumber5);
                             textViewDOB = findViewById(R.id.tvNumber6);
+                            //image = findViewById(R.id.profile_image);
 
                             //setting the values to the textViews
                             textViewFullName.setText(user.getFullName());
@@ -150,6 +129,7 @@ public class ProfileActivity extends AppCompatActivity implements FragmentDrawer
                             textViewAddress1.setText(fullAddress1);
                             textViewBio.setText(bio);
                             textViewDOB.setText(dob);
+                            //image.setImageResource(profilePic);
 
                             //storing the user in shared preferences
                             SharedPrefManager.getInstance(getApplicationContext()).userLogin(user);
@@ -243,8 +223,6 @@ public class ProfileActivity extends AppCompatActivity implements FragmentDrawer
             default:
                 break;
         }
-
-
     }
 
 }

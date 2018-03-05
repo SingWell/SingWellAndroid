@@ -1,27 +1,42 @@
 package com.example.vbarboza.singwell2;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 
-public class HomeActivity extends AppCompatActivity implements FragmentDrawer.FragmentDrawerListener {
-    private Toolbar mToolbar;
+public class ChoirPageActivity extends AppCompatActivity implements FragmentDrawer.FragmentDrawerListener  {
+
+    Toolbar mToolbar;
+    SharedPreferences sharedPreferences;
     private FragmentDrawer drawerFragment;
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.fragment_home);
+        setContentView(R.layout.activity_choir_page);
+
+        sharedPreferences = getSharedPreferences("loginPrefs", Context.MODE_PRIVATE);
+
+        //If user id is not a number, no user is logged in, redirect to LoginActivity
+        if (sharedPreferences.getString("id", "id").toString() == "id"){
+            System.out.println("id: " + sharedPreferences.getString("id", "id").toString());
+            startActivity(new Intent(this, LoginActivity.class));
+        }
+
+
+        //REMOVE, for debug purpose only
+        System.out.println("******************INSIDE CHOIR PAGE ACTIVITY*************");
 
         mToolbar = findViewById(R.id.toolbar);
-        mToolbar.setTitle("Home");
+        mToolbar.setTitle("Choir Page");
         setSupportActionBar(mToolbar);
 
-        drawerFragment = (FragmentDrawer)
-                getSupportFragmentManager().findFragmentById(R.id.fragment_navigation_drawer);
+        drawerFragment = (FragmentDrawer) getSupportFragmentManager().findFragmentById(R.id.fragment_navigation_drawer);
         drawerFragment.setUp(R.id.fragment_navigation_drawer, (DrawerLayout) findViewById(R.id.drawer_layout), mToolbar);
         drawerFragment.setDrawerListener(this);
 
@@ -61,5 +76,8 @@ public class HomeActivity extends AppCompatActivity implements FragmentDrawer.Fr
             default:
                 break;
         }
+
+
     }
+
 }
