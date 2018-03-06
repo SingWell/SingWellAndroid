@@ -88,6 +88,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentTop="true"
+                android:onClick="gotToRosterActivity"
                 android:src="@drawable/ic_group_black_24dp" />
 
         </RelativeLayout>

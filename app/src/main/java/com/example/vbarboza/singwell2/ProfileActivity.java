@@ -46,7 +46,7 @@ public class ProfileActivity extends AppCompatActivity implements FragmentDrawer
         sharedPreferences = getSharedPreferences("loginPrefs", Context.MODE_PRIVATE);
 
         //If user id is not a number, no user is logged in, redirect to LoginActivity
-        if (sharedPreferences.getString("id", "id").toString() == "id"){
+        if (sharedPreferences.getString("id", "id").toString() == "id") {
             System.out.println("id: " + sharedPreferences.getString("id", "id").toString());
             startActivity(new Intent(this, LoginActivity.class));
         }
@@ -65,7 +65,7 @@ public class ProfileActivity extends AppCompatActivity implements FragmentDrawer
         drawerFragment.setDrawerListener(this);
 
 
-        buttonLogout= findViewById(R.id.buttonLogout);
+        buttonLogout = findViewById(R.id.buttonLogout);
 
         user = SharedPrefManager.getInstance(this).getUser();
 
@@ -134,21 +134,21 @@ public class ProfileActivity extends AppCompatActivity implements FragmentDrawer
                             //storing the user in shared preferences
                             SharedPrefManager.getInstance(getApplicationContext()).userLogin(user);
 
-                    } catch (JSONException e) {
-                        e.printStackTrace();
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
                     }
-                }
 
-    }, new Response.ErrorListener() {
-        @Override
-        public void onErrorResponse(VolleyError error) {
-            System.out.println("Error response!!!!!!!!!!!!!!! " );
-            error.printStackTrace();
-            startActivity(new Intent(ProfileActivity.this, LoginActivity.class));
-            Toast toast = Toast.makeText(ProfileActivity.this, "No profile in file",Toast.LENGTH_SHORT);
-            toast.setGravity(Gravity.TOP, 0, 0);
-            toast.show();
-        }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                System.out.println("Error response!!!!!!!!!!!!!!! ");
+                error.printStackTrace();
+                startActivity(new Intent(ProfileActivity.this, LoginActivity.class));
+                Toast toast = Toast.makeText(ProfileActivity.this, "No profile in file", Toast.LENGTH_SHORT);
+                toast.setGravity(Gravity.TOP, 0, 0);
+                toast.show();
+            }
 
         })
 
@@ -165,6 +165,7 @@ public class ProfileActivity extends AppCompatActivity implements FragmentDrawer
 
 
         VolleySingleton.getInstance(ProfileActivity.this).addToRequestQueue(stringRequest);
+
 
         //when the user presses logout button
         //calling the logout method
@@ -218,6 +219,10 @@ public class ProfileActivity extends AppCompatActivity implements FragmentDrawer
                 break;
             case 4:
                 startActivity(new Intent(this, RegisterActivity.class));
+
+                break;
+            case 5:
+                startActivity(new Intent(this, RosterActivity.class));
 
                 break;
             default:

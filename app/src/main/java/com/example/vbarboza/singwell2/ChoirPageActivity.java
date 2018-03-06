@@ -8,6 +8,8 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.Button;
+import android.widget.ImageView;
 
 public class ChoirPageActivity extends AppCompatActivity implements FragmentDrawer.FragmentDrawerListener  {
 
@@ -28,7 +30,6 @@ public class ChoirPageActivity extends AppCompatActivity implements FragmentDraw
             startActivity(new Intent(this, LoginActivity.class));
         }
 
-
         //REMOVE, for debug purpose only
         System.out.println("******************INSIDE CHOIR PAGE ACTIVITY*************");
 
@@ -40,6 +41,20 @@ public class ChoirPageActivity extends AppCompatActivity implements FragmentDraw
         drawerFragment.setUp(R.id.fragment_navigation_drawer, (DrawerLayout) findViewById(R.id.drawer_layout), mToolbar);
         drawerFragment.setDrawerListener(this);
 
+        ImageView btn = findViewById(R.id.action3);
+
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goToRosterActivity(v);
+            }
+        });
+
+    }
+
+    public void goToRosterActivity (View view){
+        Intent intent = new Intent (this, RosterActivity.class);
+        startActivity(intent);
     }
 
     @Override

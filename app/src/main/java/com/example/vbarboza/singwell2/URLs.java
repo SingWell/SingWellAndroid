@@ -11,8 +11,6 @@ public class URLs {
     public static final String URL_REGISTER = ROOT_URL + "signup";
     public static final String URL_LOGIN = ROOT_URL + "login/";
     public static final String URL_USERS = ROOT_URL + "users/";
-
-
-
+    public static final String URL_CHOIRS = ROOT_URL + "choirs/";
 
 }

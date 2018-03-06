@@ -23,7 +23,6 @@ import java.util.ArrayList;
  */
 
 public class ChoirListLActivity extends AppCompatActivity implements FragmentDrawer.FragmentDrawerListener{
-    private static final String TAG = "ChoirListFragment";
 
     private ListView choirsListView;
     private Toolbar mToolbar;
@@ -74,11 +73,7 @@ public class ChoirListLActivity extends AppCompatActivity implements FragmentDra
 
         CustomListAdapter adapter = new CustomListAdapter(this, R.layout.card_layout_main, list);
         choirsListView.setAdapter(adapter);
-
-
-
     }
-
 
     @Override
     public void onDrawerItemSelected(View view, int position) {
@@ -96,25 +91,19 @@ public class ChoirListLActivity extends AppCompatActivity implements FragmentDra
 
                 break;
             case 2:
-//                if (!(sharedPreferences.getString("id", null) == null)) {
-//                //if (sharedPreferences.getString("id", null)){
-//                    finish();
-//                    startActivity(new Intent(this, ProfileActivity.class));
-//                    return;
-//                } else{
-//                    System.out.println("NOT LOGGED IN");
-//                }
                 startActivity(new Intent(this, ProfileActivity.class));
 
                 break;
             case 3:
-                //Intent startLoginActivity = new Intent(this, LoginActivity.class);
                 startActivity(new Intent(this, LoginActivity.class));
-                //startActivity(new Intent(this, LoginActivity.class));
 
                 break;
             case 4:
                 startActivity(new Intent(this, RegisterActivity.class));
+
+                break;
+            case 5:
+                startActivity(new Intent(this, RosterActivity.class));
 
                 break;
             default:
