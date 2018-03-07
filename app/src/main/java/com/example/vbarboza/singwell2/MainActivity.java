@@ -6,9 +6,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.content.Intent;
 import android.support.v7.widget.Toolbar;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -230,13 +227,15 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
 
                 break;
             case 3:
-                //Intent startLoginActivity = new Intent(this, LoginActivity.class);
                 startActivity(new Intent(this, LoginActivity.class));
-                //startActivity(new Intent(this, LoginActivity.class));
 
                 break;
             case 4:
                 startActivity(new Intent(this, RegisterActivity.class));
+
+                break;
+            case 5:
+                startActivity(new Intent(this, ChoirPageActivity.class));
 
                 break;
             default:

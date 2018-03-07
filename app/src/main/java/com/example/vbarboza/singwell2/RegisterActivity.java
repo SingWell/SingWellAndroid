@@ -1,17 +1,12 @@
 package com.example.vbarboza.singwell2;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
-import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewGroup;
-import android.support.v4.app.Fragment;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -194,13 +189,15 @@ public class RegisterActivity extends AppCompatActivity implements FragmentDrawe
 
                 break;
             case 3:
-                //Intent startLoginActivity = new Intent(this, LoginActivity.class);
                 startActivity(new Intent(this, LoginActivity.class));
-                //startActivity(new Intent(this, LoginActivity.class));
 
                 break;
             case 4:
                 startActivity(new Intent(this, RegisterActivity.class));
+
+                break;
+            case 5:
+                startActivity(new Intent(this, ChoirPageActivity.class));
 
                 break;
             default:
