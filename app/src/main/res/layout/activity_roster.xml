@@ -27,11 +27,11 @@
         </android.support.design.widget.AppBarLayout>
 
         <ListView
-            android:id="@+id/list"
+            android:id="@+id/list1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
 
-            <!--FULL NAME-->
+            <!--&lt;!&ndash;FULL NAME&ndash;&gt;-->
             <!--<TextView-->
                 <!--android:id="@+id/textView1"-->
                 <!--android:layout_width="wrap_content"-->
@@ -39,17 +39,23 @@
                 <!--android:layout_centerHorizontal="true"-->
                 <!--android:text=""-->
                 <!--android:textAppearance="?android:attr/textAppearanceLarge"/>-->
-
-            <!--&lt;!&ndash;EMAIL&ndash;&gt;-->
-            <!--<TextView-->
-                <!--android:id="@+id/textView2"-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:layout_centerHorizontal="true"-->
-                <!--android:layout_below="@+id/textView1"-->
-                <!--android:text=""-->
-                <!--android:textAppearance="?android:attr/textAppearanceLarge"/>-->
         </ListView>
+
+        <!--<ListView-->
+            <!--android:id="@+id/list2"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content">-->
+
+            <!--&lt;!&ndash;&lt;!&ndash;EMAIL&ndash;&gt;&ndash;&gt;-->
+            <!--&lt;!&ndash;<TextView&ndash;&gt;-->
+                <!--&lt;!&ndash;android:id="@+id/textView2"&ndash;&gt;-->
+                <!--&lt;!&ndash;android:layout_width="wrap_content"&ndash;&gt;-->
+                <!--&lt;!&ndash;android:layout_height="wrap_content"&ndash;&gt;-->
+                <!--&lt;!&ndash;android:layout_centerHorizontal="true"&ndash;&gt;-->
+                <!--&lt;!&ndash;android:layout_below="@+id/textView1"&ndash;&gt;-->
+                <!--&lt;!&ndash;android:text=""&ndash;&gt;-->
+                <!--&lt;!&ndash;android:textAppearance="?android:attr/textAppearanceLarge"/>&ndash;&gt;-->
+        <!--</ListView>-->
 
     </LinearLayout>
 
