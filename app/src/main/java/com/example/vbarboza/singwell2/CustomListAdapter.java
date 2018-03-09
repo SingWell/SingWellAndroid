@@ -2,6 +2,7 @@ package com.example.vbarboza.singwell2;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -45,6 +46,7 @@ public class CustomListAdapter extends ArrayAdapter<Card> {
     private static class ViewHolder {
         TextView title;
         ImageView image;
+        TextView email;
         ProgressBar dialog;
     }
 
@@ -71,6 +73,7 @@ public class CustomListAdapter extends ArrayAdapter<Card> {
         //get the persons information
         String title = getItem(position).getTitle();
         String imgUrl = getItem(position).getImgURL();
+        String email = getItem(position).getEmail();
 
         try{
 
@@ -87,6 +90,7 @@ public class CustomListAdapter extends ArrayAdapter<Card> {
                 holder.title = (TextView) convertView.findViewById(R.id.cardTitle);
                 holder.image = (ImageView) convertView.findViewById(R.id.cardImage);
                 holder.dialog = (ProgressBar) convertView.findViewById(R.id.cardProgressDialog);
+                holder.email = (TextView) convertView.findViewById(R.id.email);
 
                 result = convertView;
 
@@ -98,6 +102,7 @@ public class CustomListAdapter extends ArrayAdapter<Card> {
             }
 
             holder.title.setText(title);
+            holder.email.setText(email);
 
             //create the imageloader object
             ImageLoader imageLoader = ImageLoader.getInstance();

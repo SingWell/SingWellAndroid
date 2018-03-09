@@ -31,36 +31,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
 
-            <!--&lt;!&ndash;FULL NAME&ndash;&gt;-->
-            <!--<TextView-->
-                <!--android:id="@+id/textView1"-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:layout_centerHorizontal="true"-->
-                <!--android:text=""-->
-                <!--android:textAppearance="?android:attr/textAppearanceLarge"/>-->
         </ListView>
-
-        <!--<ListView-->
-            <!--android:id="@+id/list2"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content">-->
-
-            <!--&lt;!&ndash;&lt;!&ndash;EMAIL&ndash;&gt;&ndash;&gt;-->
-            <!--&lt;!&ndash;<TextView&ndash;&gt;-->
-                <!--&lt;!&ndash;android:id="@+id/textView2"&ndash;&gt;-->
-                <!--&lt;!&ndash;android:layout_width="wrap_content"&ndash;&gt;-->
-                <!--&lt;!&ndash;android:layout_height="wrap_content"&ndash;&gt;-->
-                <!--&lt;!&ndash;android:layout_centerHorizontal="true"&ndash;&gt;-->
-                <!--&lt;!&ndash;android:layout_below="@+id/textView1"&ndash;&gt;-->
-                <!--&lt;!&ndash;android:text=""&ndash;&gt;-->
-                <!--&lt;!&ndash;android:textAppearance="?android:attr/textAppearanceLarge"/>&ndash;&gt;-->
-        <!--</ListView>-->
-
     </LinearLayout>
-
-
-
 
     <fragment
         android:id="@+id/fragment_navigation_drawer"

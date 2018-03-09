@@ -9,13 +9,20 @@ package com.example.vbarboza.singwell2;
 public class Card {
     private String imgURL;
     private String title;
+    private String email;
 
     public Card(String imgURL, String title) {
         this.imgURL = imgURL;
         this.title = title;
     }
 
+    public Card(String imgURL, String title, String email){
+        this.imgURL = imgURL;
+        this.title = title;
+        this.email = email;
+    }
     public String getImgURL() {
+
         return imgURL;
     }
 
@@ -32,6 +39,16 @@ public class Card {
     public void setTitle(String title) {
 
         this.title = title;
+    }
+
+    public void setEmail() {
+
+        this.email = email;
+    }
+
+    public String getEmail() {
+
+        return email;
     }
 }
 

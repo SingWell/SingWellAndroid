@@ -1,6 +1,5 @@
 package com.example.vbarboza.singwell2;
 
-import android.app.ListActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -10,9 +9,7 @@ import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
 import android.support.v7.widget.Toolbar;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
@@ -32,26 +29,18 @@ import java.util.Map;
 
 public class RosterActivity extends AppCompatActivity implements FragmentDrawer.FragmentDrawerListener {
 
-    //private ListActivity listActivity;
-    //TextView textViewFullName, textViewEmail;
     SharedPreferences sharedPreferences;
     Toolbar mToolbar;
     private FragmentDrawer drawerFragment;
     JSONObject user = new JSONObject();
-    static ArrayList<String> choristerNames;// = new ArrayList<String>();
-    final ArrayList<String> choristerEmails = new ArrayList<>();
-    private ListView listView;
+    ArrayList<Card> list = new ArrayList<>();
+    private ListView choristersListView;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_roster);
-
-        listView = findViewById(R.id.list1);
-        //listView = findViewById(R.id.list2);
-
-        choristerNames = new ArrayList<>();
 
         sharedPreferences = getSharedPreferences("loginPrefs", Context.MODE_PRIVATE);
 
@@ -61,12 +50,13 @@ public class RosterActivity extends AppCompatActivity implements FragmentDrawer.
             startActivity(new Intent(this, LoginActivity.class));
         }
 
-        //REMOVE, for debug purpose only
-        System.out.println("******************INSIDE ROSTER ACTIVITY*************");
-
         mToolbar = findViewById(R.id.toolbar);
         mToolbar.setTitle("Choir Roster");
         setSupportActionBar(mToolbar);
+
+
+        //list1 is in activity_roster.xml (this is how I want the list to look)
+        choristersListView = findViewById(R.id.list1);
 
         drawerFragment = (FragmentDrawer) getSupportFragmentManager().findFragmentById(R.id.fragment_navigation_drawer);
         drawerFragment.setUp(R.id.fragment_navigation_drawer, (DrawerLayout) findViewById(R.id.drawer_layout), mToolbar);
@@ -76,41 +66,25 @@ public class RosterActivity extends AppCompatActivity implements FragmentDrawer.
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-
-                        System.out.println("inside Choirs onResponse()****************************");
-
-                        //System.out.println("Response: " + response);
-
                         try {
                             //converting response to json object
                             JSONObject obj = new JSONObject(response);
 
-                            //System.out.println("JSON obj: " + obj);
-
                             JSONArray choirs = obj.getJSONArray("choirs");
-                            //System.out.println("Choirs array: " + choirs);
                             getChoirs(choirs);
-
-
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
                     }
-
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                System.out.println("Error response!!!!!!!!!!!!!!! ");
                 error.printStackTrace();
             }
 
         });
 
-
-        System.out.println("$$$$$$$$$$$$$$ choristerNames: " + choristerNames.size());
-
         VolleySingleton.getInstance(this).addToRequestQueue(stringRequest);
-
     }
 
     String choirId;
@@ -122,13 +96,6 @@ public class RosterActivity extends AppCompatActivity implements FragmentDrawer.
                         new Response.Listener<String>() {
                             @Override
                             public void onResponse(String response) {
-
-                                //REMOVE, for debug purpose only
-                                System.out.println("*************************inside getChoirs() onResponse()****************************");
-
-                                //REMOVE, for debug purpose only
-                                //System.out.println("Response: " + response);
-
                                 try {
                                     //converting response to json object
                                     JSONObject obj = new JSONObject(response);
@@ -138,32 +105,15 @@ public class RosterActivity extends AppCompatActivity implements FragmentDrawer.
                                     String startHour = obj.getString("meeting_day_start_hour");
                                     String endHour = obj.getString("meeting_day_end_hour");
 
-//                                    System.out.println("name: " + name);
-//                                    System.out.println("meeting_day: " + meeting_day);
-//                                    System.out.println("startHour: " + startHour);
-//                                    System.out.println("endHour: " + endHour);
-
                                     //extracting choirs array from response
                                     JSONArray choristersArray = obj.getJSONArray("choristers");
-                                    //System.out.println("Choristers array: " + choristersArray);
-
-//                                    String[] rosterArray = new String[choristersArray.length()];
-//                                    for (int i = 0; i < 5; i++) {
-//                                        rosterArray[i] = choristersArray.getString(i);
-//                                        //System.out.println("getUser(): " + getUser(rosterArray[i]));
-//                                    }
 
                                     getUser(choristersArray);
-                                    System.out.print("*****************In getChoirs() chroisterNames : " + choristerNames);
-
-//                            for (int i = 0; i < rosterArray.length; i++)
-//                                System.out.println("rosterArray[" + i + "]: " + rosterArray[i]);
 
                                 } catch (JSONException e) {
                                     e.printStackTrace();
                                 }
                             }
-
                         }, new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
@@ -187,19 +137,15 @@ public class RosterActivity extends AppCompatActivity implements FragmentDrawer.
                         return params;
                     }
                 };
-
-
                 VolleySingleton.getInstance(RosterActivity.this).addToRequestQueue(stringRequest);
-
             }
         }
+
     String userID;
-    int count=0;
     public JSONObject getUser(JSONArray id) throws JSONException {
 
         for(int i = 0; i < id.length(); i++) {
             userID = id.getString(i);
-            //System.out.println("id.getString(i): " + id.getString(i));
             StringRequest stringRequest = new StringRequest(Request.Method.GET, URLs.URL_USERS + userID,
                     new Response.Listener<String>() {
 
@@ -209,40 +155,21 @@ public class RosterActivity extends AppCompatActivity implements FragmentDrawer.
                             //REMOVE, for debug purpose only
                             System.out.println("***************inside Users onResponse()****************************");
 
-                            //REMOVE, for debug purpose only
-                          //  System.out.println("getUser() Response: " + response);
-
                             try {
                                 //converting response to json object
                                 user = new JSONObject(response);
 
-                                String email = user.getString("email");
                                 String firstName = user.getString("first_name");
                                 String lastName = user.getString("last_name");
-                                String id = user.getString("id");
-
-//                                System.out.println("email: " + email);
-//                                System.out.println("firstName: " + firstName);
-//                                System.out.println("lastName: " + lastName);
-//                                System.out.println("id: " + id);
 
                                 String fullName = firstName + " " + lastName;
 
-//                                for(int i = 0; i < user.length(); i++){
-                                    choristerNames.add(fullName);
+                                //create list of choristers cards to display on listView
+                                list.add(new Card("drawable://" + R.drawable.ic_account_circle_black_18dp, fullName, user.getString("email")));
 
-//                                }
-
-                                //System.out.println("choristerNames.size()" + choristerNames.size());
-                                choristerEmails.add(email);
-
-//                                System.out.print("choristerNames: " + choristerNames + "DONE!!!!1");
-//                                System.out.print("choristerEmails: " + choristerEmails + "DONE!!!!1");
-                                CustomArrayAdapter adapter = new CustomArrayAdapter(getApplicationContext(),choristerNames);
-                                listView.setAdapter(adapter);
-
-//                                CustomArrayAdapter adapter = new CustomArrayAdapter(getApplicationContext(),choristerNames);
-//                                listView.setAdapter(adapter);
+                                //pass data to listView
+                                CustomListAdapter adapter = new CustomListAdapter(RosterActivity.this, R.layout.rowlayout, list);
+                                choristersListView.setAdapter(adapter);
 
 
                             } catch (JSONException e) {
@@ -274,16 +201,8 @@ public class RosterActivity extends AppCompatActivity implements FragmentDrawer.
                 }
             };
 
-            System.out.print("count: " + count++ + " choristerNames.toString(): " + choristerNames);
-
-
             VolleySingleton.getInstance(RosterActivity.this).addToRequestQueue(stringRequest);
-
         }
-
-        System.out.println("choristerNames: " + choristerNames + "DONE!!!!1");
-        System.out.println("choristerEmails: " + choristerEmails + "DONE!!!!1");
-
         return user;
     }
 
