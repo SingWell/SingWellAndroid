@@ -170,7 +170,16 @@ public class ChoirListLActivity extends AppCompatActivity implements FragmentDra
                                 String name = obj.getString("name");
                                 System.out.println("name: " + name);
 
-                                list.add(new Card("drawable://" + R.drawable.iceland, name));
+                                String day = obj.getString("meeting_day");
+                                System.out.println("day: " + day);
+
+                                String start = obj.getString("meeting_day_start_hour");
+                                System.out.println("start time: " + start);
+
+                                String end = obj.getString("meeting_day_end_hour");
+                                System.out.println("end time: " + end);
+
+                                list.add(new Card("drawable://" + R.drawable.iceland, name, day, start, end));
 
                                 CustomListAdapter adapter = new CustomListAdapter(ChoirListLActivity.this, R.layout.card_layout_main, list);
                                 choirsListView.setAdapter(adapter);

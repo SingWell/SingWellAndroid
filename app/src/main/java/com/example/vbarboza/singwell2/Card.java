@@ -9,10 +9,14 @@ package com.example.vbarboza.singwell2;
 public class Card {
     private String imgURL;
     private String title;
+    private String meetingDay, startTime, endTime;
 
-    public Card(String imgURL, String title) {
+    public Card(String imgURL, String title, String day, String start, String end) {
         this.imgURL = imgURL;
         this.title = title;
+        this.meetingDay = day;
+        this.startTime = start;
+        this.endTime = end;
     }
 
     public String getImgURL() {
@@ -32,6 +36,35 @@ public class Card {
     public void setTitle(String title) {
 
         this.title = title;
+    }
+
+    public void setDay(String day) {
+
+        this.meetingDay = day;
+    }
+    public String getDay() {
+
+        return meetingDay;
+    }
+
+    public void setStart(String start) {
+
+        this.startTime = start;
+    }
+
+    public String getStart() {
+
+        return startTime;
+    }
+
+    public void setEnd(String end) {
+
+        this.endTime = end;
+    }
+
+    public String getEnd() {
+
+        return endTime;
     }
 }
 
