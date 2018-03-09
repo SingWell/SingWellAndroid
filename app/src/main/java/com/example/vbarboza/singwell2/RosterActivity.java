@@ -6,14 +6,10 @@ import android.content.SharedPreferences;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.telephony.PhoneNumberUtils;
 import android.view.Gravity;
 import android.view.View;
 import android.support.v7.widget.Toolbar;
-import android.widget.ArrayAdapter;
-import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
@@ -26,179 +22,151 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.lang.reflect.Array;
+
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
 public class RosterActivity extends AppCompatActivity implements FragmentDrawer.FragmentDrawerListener {
 
-    TextView textViewFullName, textViewEmail;
     SharedPreferences sharedPreferences;
     Toolbar mToolbar;
     private FragmentDrawer drawerFragment;
     JSONObject user = new JSONObject();
-    //ListView listView;
+    ArrayList<Card> list = new ArrayList<>();
+    private ListView choristersListView;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_roster);
 
-        //listView = findViewById(R.id.list);
-
-        //sharedPreferences = getSharedPreferences("loginPrefs", Context.MODE_PRIVATE);
+        sharedPreferences = getSharedPreferences("loginPrefs", Context.MODE_PRIVATE);
 
         //If user id is not a number, no user is logged in, redirect to LoginActivity
-//        if (sharedPreferences.getString("id", "id").toString() == "id"){
-//            System.out.println("id: " + sharedPreferences.getString("id", "id").toString());
-//            startActivity(new Intent(this, LoginActivity.class));
-//        }
-
-
-        //REMOVE, for debug purpose only
-        System.out.println("******************INSIDE ROSTER ACTIVITY*************");
+        if (sharedPreferences.getString("id", "id").toString() == "id") {
+            System.out.println("id: " + sharedPreferences.getString("id", "id").toString());
+            startActivity(new Intent(this, LoginActivity.class));
+        }
 
         mToolbar = findViewById(R.id.toolbar);
-        mToolbar.setTitle("Choir Rooster");
+        mToolbar.setTitle("Choir Roster");
         setSupportActionBar(mToolbar);
+
+
+        //list1 is in activity_roster.xml (this is how I want the list to look)
+        choristersListView = findViewById(R.id.list1);
 
         drawerFragment = (FragmentDrawer) getSupportFragmentManager().findFragmentById(R.id.fragment_navigation_drawer);
         drawerFragment.setUp(R.id.fragment_navigation_drawer, (DrawerLayout) findViewById(R.id.drawer_layout), mToolbar);
         drawerFragment.setDrawerListener(this);
 
-        String id = "20";
-
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, URLs.URL_CHOIRS + id,
-                //sharedPreferences.getString("id", "id").toString(),
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, URLs.URL_USERS + sharedPreferences.getString("id", "id").toString(),
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-
-                        //REMOVE, for debug purpose only
-                        System.out.println("inside Roster onResponse()****************************");
-
-                        //REMOVE, for debug purpose only
-                        System.out.println("Response: " + response);
-
                         try {
                             //converting response to json object
                             JSONObject obj = new JSONObject(response);
 
-                            String name = obj.getString("name");
-                            String meeting_day = obj.getString("meeting_day");
-                            String startHour = obj.getString("meeting_day_start_hour");
-                            String endHour = obj.getString("meeting_day_end_hour");
-
-                            System.out.println("name: " + name);
-                            System.out.println("meeting_day: " + meeting_day);
-                            System.out.println("startHour: " + startHour);
-                            System.out.println("endHour: " + endHour);
-
-                            //extracting choirs array from response
-                            JSONArray choristersArray = obj.getJSONArray("choristers");
-                            System.out.println("Choristers array: " + choristersArray);
-
-                            String[] rosterArray = new String[choristersArray.length()];
-                            for(int i = 0; i < 5; i++) {
-                                rosterArray[i] = choristersArray.getString(i);
-                                //System.out.println("getUser(): " + getUser(rosterArray[i]));
-                            }
-
-                            getUser(choristersArray);
-
-//                            for (int i = 0; i < rosterArray.length; i++)
-//                                System.out.println("rosterArray[" + i + "]: " + rosterArray[i]);
-
+                            JSONArray choirs = obj.getJSONArray("choirs");
+                            getChoirs(choirs);
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
                     }
-
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                System.out.println("Error response!!!!!!!!!!!!!!! " );
                 error.printStackTrace();
-                startActivity(new Intent(RosterActivity.this, LoginActivity.class));
-                Toast toast = Toast.makeText(RosterActivity.this, "No profile in file",Toast.LENGTH_SHORT);
-                toast.setGravity(Gravity.TOP, 0, 0);
-                toast.show();
             }
 
-        })
+        });
 
-        {
-            @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
-                Map<String, String> params = new HashMap<>();
+        VolleySingleton.getInstance(this).addToRequestQueue(stringRequest);
+    }
+
+    String choirId;
+    public void getChoirs(JSONArray choir) throws JSONException {
+        for (int i = 0; i < choir.length(); i++) {
+            choirId = choir.getString(i);
+
+            StringRequest stringRequest = new StringRequest(Request.Method.GET, URLs.URL_CHOIRS + choirId,
+                        new Response.Listener<String>() {
+                            @Override
+                            public void onResponse(String response) {
+                                try {
+                                    //converting response to json object
+                                    JSONObject obj = new JSONObject(response);
+
+                                    String name = obj.getString("name");
+                                    String meeting_day = obj.getString("meeting_day");
+                                    String startHour = obj.getString("meeting_day_start_hour");
+                                    String endHour = obj.getString("meeting_day_end_hour");
+
+                                    //extracting choirs array from response
+                                    JSONArray choristersArray = obj.getJSONArray("choristers");
+
+                                    getUser(choristersArray);
+
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                }
+                            }
+                        }, new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        System.out.println("Error response!!!!!!!!!!!!!!! ");
+                        error.printStackTrace();
+                        startActivity(new Intent(RosterActivity.this, LoginActivity.class));
+                        Toast toast = Toast.makeText(RosterActivity.this, "No profile in file", Toast.LENGTH_SHORT);
+                        toast.setGravity(Gravity.TOP, 0, 0);
+                        toast.show();
+                    }
+
+                })
+
+                {
+                    @Override
+                    protected Map<String, String> getParams() throws AuthFailureError {
+                        Map<String, String> params = new HashMap<>();
 //                params.put("email", textViewEmail.getText().toString());
 //                params.put("full_name", textViewFullName.getText().toString());
-                //params.put("firstName", editTextPassword.getText().toString());
-                return params;
+                        //params.put("firstName", editTextPassword.getText().toString());
+                        return params;
+                    }
+                };
+                VolleySingleton.getInstance(RosterActivity.this).addToRequestQueue(stringRequest);
             }
-        };
-
-
-        VolleySingleton.getInstance(RosterActivity.this).addToRequestQueue(stringRequest);
-
-    }
+        }
 
     String userID;
     public JSONObject getUser(JSONArray id) throws JSONException {
-        System.out.println("Inside getUSer(), JSONArray : " +id);
+
         for(int i = 0; i < id.length(); i++) {
             userID = id.getString(i);
-            System.out.println("id.getString(i): " + id.getString(i));
             StringRequest stringRequest = new StringRequest(Request.Method.GET, URLs.URL_USERS + userID,
                     new Response.Listener<String>() {
 
                         @Override
                         public void onResponse(String response) {
-
-                            //REMOVE, for debug purpose only
-                            System.out.println("inside Users onResponse()****************************");
-
-                            //REMOVE, for debug purpose only
-                            System.out.println("getUser() Response: " + response);
-
                             try {
                                 //converting response to json object
                                 user = new JSONObject(response);
 
-                                System.out.println("User: " + user);
-
-                                String email = user.getString("email");
                                 String firstName = user.getString("first_name");
                                 String lastName = user.getString("last_name");
-                                String id = user.getString("id");
 
-                                System.out.println("email: " + email);
-                                System.out.println("firstName: " + firstName);
-                                System.out.println("lastName: " + lastName);
-                                System.out.println("id: " + id);
+                                String fullName = firstName + " " + lastName;
 
+                                //create list of choristers cards to display on listView
+                                list.add(new Card("drawable://" + R.drawable.ic_account_circle_black_18dp, fullName, user.getString("email")));
 
-                                //extracting choirs array from response
-                                //JSONArray choristersArray = user.getJSONArray("choristers");
-                                //System.out.println("Choristers array: " + choristersArray);
+                                //pass data to listView
+                                CustomListAdapter2 adapter = new CustomListAdapter2(RosterActivity.this, R.layout.rowlayout, list);
+                                choristersListView.setAdapter(adapter);
 
-//                                textViewFullName = findViewById(R.id.textView1);
-//                                textViewEmail = findViewById(R.id.textView2);
-//
-//                                textViewFullName.setText(user.getString("first_name"));
-//                                textViewEmail.setText(user.getString("email"));
-
-                                //ArrayAdapter<String>adapter = new ArrayAdapter<String>(this, android.R.id.textView1, android.R.id.textView2,  )
-
-//                            String[] rosterArray = new String[choristersArray.length()];
-//                            for(int i = 0; i < choristersArray.length(); i++) {
-//                                rosterArray[i] = choristersArray.getString(i);
-//                                System.out.println("user.getString(\"email\")" + user.getString("email"));
-//                                //textViewFullName.setText(rosterArray[i].);
-//                            }
-//
-//                            for (int i = 0; i < rosterArray.length; i++)
-//                                System.out.println("rosterArray[" + i + "]: " + rosterArray[i]);
 
                             } catch (JSONException e) {
                                 e.printStackTrace();

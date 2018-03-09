@@ -32,7 +32,7 @@ import java.util.ArrayList;
  * ************
  */
 
-public class CustomListAdapter extends ArrayAdapter<Card> {
+public class CustomListAdapter2 extends ArrayAdapter<Card> {
 
     private static final String TAG = "CustomListAdapter";
 
@@ -46,6 +46,7 @@ public class CustomListAdapter extends ArrayAdapter<Card> {
     private static class ViewHolder {
         TextView title;
         ImageView image;
+        TextView email;
         ProgressBar dialog;
     }
 
@@ -55,7 +56,7 @@ public class CustomListAdapter extends ArrayAdapter<Card> {
      * @param resource
      * @param objects
      */
-    public CustomListAdapter(Context context, int resource, ArrayList<Card> objects) {
+    public CustomListAdapter2(Context context, int resource, ArrayList<Card> objects) {
         super(context, resource, objects);
         mContext = context;
         mResource = resource;
@@ -89,6 +90,7 @@ public class CustomListAdapter extends ArrayAdapter<Card> {
                 holder.title = (TextView) convertView.findViewById(R.id.cardTitle);
                 holder.image = (ImageView) convertView.findViewById(R.id.cardImage);
                 holder.dialog = (ProgressBar) convertView.findViewById(R.id.cardProgressDialog);
+                holder.email = (TextView) convertView.findViewById(R.id.email);
 
                 result = convertView;
 
@@ -100,6 +102,7 @@ public class CustomListAdapter extends ArrayAdapter<Card> {
             }
 
             holder.title.setText(title);
+            holder.email.setText(email);
 
             //create the imageloader object
             ImageLoader imageLoader = ImageLoader.getInstance();

@@ -25,10 +25,10 @@ public class ChoirPageActivity extends AppCompatActivity implements FragmentDraw
         sharedPreferences = getSharedPreferences("loginPrefs", Context.MODE_PRIVATE);
 
         //If user id is not a number, no user is logged in, redirect to LoginActivity
-        if (sharedPreferences.getString("id", "id").toString() == "id"){
-            System.out.println("id: " + sharedPreferences.getString("id", "id").toString());
-            startActivity(new Intent(this, LoginActivity.class));
-        }
+//        if (sharedPreferences.getString("id", "id").toString() == "id"){
+//            System.out.println("id: " + sharedPreferences.getString("id", "id").toString());
+//            startActivity(new Intent(this, LoginActivity.class));
+//        }
 
         //REMOVE, for debug purpose only
         System.out.println("******************INSIDE CHOIR PAGE ACTIVITY*************");
