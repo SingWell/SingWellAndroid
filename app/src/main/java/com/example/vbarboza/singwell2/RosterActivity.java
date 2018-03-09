@@ -151,10 +151,6 @@ public class RosterActivity extends AppCompatActivity implements FragmentDrawer.
 
                         @Override
                         public void onResponse(String response) {
-
-                            //REMOVE, for debug purpose only
-                            System.out.println("***************inside Users onResponse()****************************");
-
                             try {
                                 //converting response to json object
                                 user = new JSONObject(response);
@@ -168,7 +164,7 @@ public class RosterActivity extends AppCompatActivity implements FragmentDrawer.
                                 list.add(new Card("drawable://" + R.drawable.ic_account_circle_black_18dp, fullName, user.getString("email")));
 
                                 //pass data to listView
-                                CustomListAdapter adapter = new CustomListAdapter(RosterActivity.this, R.layout.rowlayout, list);
+                                CustomListAdapter2 adapter = new CustomListAdapter2(RosterActivity.this, R.layout.rowlayout, list);
                                 choristersListView.setAdapter(adapter);
 
 

@@ -140,8 +140,9 @@ public class ChoirListLActivity extends AppCompatActivity implements FragmentDra
 
                                 String name = obj.getString("name");
                                 System.out.println("name: " + name);
+                                String email = "";
 
-                                list.add(new Card("drawable://" + R.drawable.iceland, name));
+                                list.add(new Card("drawable://" + R.drawable.iceland, name, email));
 
                                 CustomListAdapter adapter = new CustomListAdapter(ChoirListLActivity.this, R.layout.card_layout_main, list);
                                 choirsListView.setAdapter(adapter);
