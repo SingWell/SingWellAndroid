@@ -14,7 +14,7 @@
     <string name="nav_item_profile">Profile</string>
     <string name="nav_item_login">Login</string>
     <string name="nav_item_Register">Register</string>
-    <string name="nav_item_choir_page">Choir Page</string>
+    <string name="nav_item_choir_page">Choir</string>
 
 
     <string name="username">Username: </string>
@@ -39,7 +39,7 @@
     <string name="title_profile">Profile</string>
     <string name="title_login">Login</string>
     <string name="title_Register">Register</string>
-    <string name="title_choir_page">Choir Page</string>
+    <string name="title_choir_page">Choir</string>
 
 
     <!-- TODO: Remove or change this placeholder text -->
