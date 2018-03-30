@@ -14,7 +14,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:id="@+id/choir_page">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -135,162 +136,79 @@
             android:padding="@dimen/activity_horizontal_margin">
 
             <ImageView
-                android:id="@+id/ivContactItem6"
+                android:id="@+id/calendarImage"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
                 android:src="@drawable/today_black_24x24" />
 
+            <!--EVENT NAME-->
             <TextView
-                android:id="@+id/tvNumber6"
+                android:id="@+id/eventName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:ellipsize="end"
                 android:maxLines="2"
-                android:text="Band Practice at 10:20am"
                 android:textStyle="bold"
                 android:textSize="18dp"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 android:textColor="#212121" />
 
+            <!--EVENT TIME-->
             <TextView
-                android:id="@+id/tvNumber8"
+                android:id="@+id/eventTime"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
-                android:layout_alignStart="@+id/tvNumber6"
+                android:layout_alignStart="@+id/eventName"
                 android:ellipsize="end"
                 android:maxLines="2"
-                android:text="Room 15"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 android:textColor="#212121"
                 android:textSize="15dp"
                 android:textStyle="normal" />
 
-        </RelativeLayout>
-
-        <!--EVENT 2-->
-        <include
-            layout="@layout/item_divider"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-
-        <include layout="@layout/item_divider" />
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="76dp"
-            android:background="?attr/selectableItemBackground"
-            android:clickable="true"
-            android:padding="@dimen/activity_horizontal_margin">
-
+            <!--EVENT DATE-->
             <TextView
-                android:id="@+id/tvNumber"
+                android:id="@+id/eventDate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
+                android:layout_alignParentBottom="true"
+                android:layout_alignStart="@+id/eventTime"
                 android:ellipsize="end"
                 android:maxLines="2"
-                android:text="Spirit Choir event at 9:15am"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                android:textColor="#212121"
-                android:textSize="18dp"
-                android:textStyle="bold" />
-
-            <ImageView
-                android:id="@+id/ivContactItem2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginEnd="@dimen/activity_horizontal_margin"
-                android:layout_marginRight="@dimen/activity_horizontal_margin"
-                android:src="@drawable/event_black_24x24" />
-
-            <TextView
-                android:id="@+id/tvNumber2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                android:layout_marginStart="@dimen/activity_horizontal_margin"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                android:textColor="#212121" />
-
-            <TextView
-                android:id="@+id/tvNumber7"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignStart="@+id/tvNumber"
-                android:layout_below="@+id/tvNumber"
-                android:ellipsize="end"
-                android:maxLines="2"
-                android:text="Chapel"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 android:textColor="#212121"
                 android:textSize="15dp"
                 android:textStyle="normal" />
+
+            <!--EVENT LOCATION-->
+            <TextView
+                android:id="@+id/eventLocation"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_alignStart="@+id/eventDate"
+                android:ellipsize="end"
+                android:maxLines="2"
+                android:text=" "
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textColor="#212121"
+                android:textSize="15dp"
+                android:textStyle="normal" />
+
+            <ProgressBar
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:id="@+id/progress_Dialog"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"/>
 
         </RelativeLayout>
 
         <include layout="@layout/item_divider" />
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="76dp"
-            android:background="?attr/selectableItemBackground"
-            android:clickable="true"
-            android:padding="@dimen/activity_horizontal_margin">
-
-            <TextView
-                android:id="@+id/tvNumber0"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentTop="true"
-                android:layout_toEndOf="@+id/ivContactItem8"
-                android:ellipsize="end"
-                android:maxLines="2"
-                android:text="Trad Choir event at 12:00pm"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                android:textColor="#212121"
-                android:textSize="18dp"
-                android:textStyle="bold" />
-
-            <ImageView
-                android:id="@+id/ivContactItem8"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginEnd="@dimen/activity_horizontal_margin"
-                android:layout_marginRight="@dimen/activity_horizontal_margin"
-                android:src="@drawable/event_black_24x24" />
-
-            <TextView
-                android:id="@+id/tvNumber9"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                android:layout_marginStart="@dimen/activity_horizontal_margin"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                android:textColor="#212121" />
-
-            <TextView
-                android:id="@+id/tvNumber10"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:layout_alignStart="@+id/tvNumber0"
-                android:ellipsize="end"
-                android:maxLines="2"
-                android:text="Chapel"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                android:textColor="#212121"
-                android:textSize="15dp"
-                android:textStyle="normal" />
-
-        </RelativeLayout>
-        <include layout="@layout/wide_divider" />
     </LinearLayout>
 
 </android.support.v4.widget.NestedScrollView>

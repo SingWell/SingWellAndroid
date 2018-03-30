@@ -28,6 +28,13 @@
 
     <include layout="@layout/content_choir_page" />
 
+        <ListView
+            android:id="@+id/choirEventsList"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+        </ListView>
+
     </LinearLayout>
 
     <fragment

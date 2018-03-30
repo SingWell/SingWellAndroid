@@ -10,6 +10,13 @@ public class Card {
     private String imgURL;
     private String title;
     private String email;
+    private String name;
+    private String time;
+    private String date;
+    private String location;
+
+
+
 
     public Card(String imgURL, String title) {
         this.imgURL = imgURL;
@@ -21,6 +28,15 @@ public class Card {
         this.title = title;
         this.email = email;
     }
+
+    public Card(String imgURL, String name, String date, String location, String time){
+        this.imgURL = imgURL;
+        this.name = name;
+        this.date = date;
+        this.location = location;
+        this.time = time;
+    }
+
     public String getImgURL() {
 
         return imgURL;
@@ -49,6 +65,22 @@ public class Card {
     public String getEmail() {
 
         return email;
+    }
+
+    public String getName(){
+        return name;
+    }
+
+    public String getTime(){
+        return time;
+    }
+
+    public String getDate(){
+        return date;
+    }
+
+    public String getLocation(){
+        return location;
     }
 }
 
