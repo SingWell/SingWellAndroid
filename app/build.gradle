@@ -51,4 +51,8 @@ dependencies {
     //for circle profile image
     compile 'de.hdodenhof:circleimageview:1.2.1'
 
+    //for allowing percentages to relative views on same page
+    compile 'com.android.support:percent:26.1.0'
+
+
 }

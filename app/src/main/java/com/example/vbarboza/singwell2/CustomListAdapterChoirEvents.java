@@ -1,9 +1,7 @@
 package com.example.vbarboza.singwell2;
 
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.Bitmap;
-import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -26,32 +24,28 @@ import com.nostra13.universalimageloader.core.listener.SimpleImageLoadingListene
 
 import java.util.ArrayList;
 
-
 /**
- * Created by evaramirez on 11/20/17.
- * This file is a custom list adapter, other functions may be added to customize other lists
- * Following mitchtabian Instagram tutorial https://www.youtube.com/watch?v=Cdn0jEFW6FM
- * ************
+ * Created by evaramirez on 3/26/18.
  */
 
-public class CustomListAdapter2 extends ArrayAdapter<Card> {
+public class CustomListAdapterChoirEvents extends ArrayAdapter<Card> {
 
-    private static final String TAG = "CustomListAdapter2";
+    private static final String TAG = "CustomLAdaptChoirEvents";
 
     private Context mContext;
     private int mResource;
-    // private int lastPosition = -1;
 
     /**
      * Holds variables in a View
      */
     private static class ViewHolder {
-        TextView title;
         ImageView image;
-        TextView email;
+        TextView name;
+        TextView date;
+        TextView time;
+        TextView location;
         ProgressBar dialog;
         RelativeLayout parentLayout;
-        TextView id;
     }
 
     /**
@@ -60,103 +54,122 @@ public class CustomListAdapter2 extends ArrayAdapter<Card> {
      * @param resource
      * @param objects
      */
-    public CustomListAdapter2(Context context, int resource, ArrayList<Card> objects) {
+    public CustomListAdapterChoirEvents(Context context, int resource, ArrayList<Card> objects) {
         super(context, resource, objects);
         mContext = context;
         mResource = resource;
 
         //sets up the image loader library
         setupImageLoader();
-
     }
 
     @NonNull
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
 
-        //get the persons information
-        final String title = getItem(position).getTitle();
+        //get the event information
+        final String name = getItem(position).getName();
+        String date = getItem(position).getDate();
+        String time = getItem(position).getTime();
+        String location = getItem(position).getLocation();
         String imgUrl = getItem(position).getImgURL();
-        String email = getItem(position).getEmail();
-        //String id = getItemId(position).getId();
 
+//        System.out.println("***************** Inside getView() ********************");
         try{
+//            System.out.println("***************** Inside try ********************");
 
             //create the view result for showing the animation
             final View result;
 
             //ViewHolder object
-            final ViewHolder holder;
+            final CustomListAdapterChoirEvents.ViewHolder holder;
 
             if(convertView == null){
+//                System.out.println("***************** Inside if() ********************");
+
                 LayoutInflater inflater = LayoutInflater.from(mContext);
                 convertView = inflater.inflate(mResource, parent, false);
-                holder= new ViewHolder();
-                holder.title = (TextView) convertView.findViewById(R.id.cardTitle);
-                holder.image = (ImageView) convertView.findViewById(R.id.cardImage);
-                holder.dialog = (ProgressBar) convertView.findViewById(R.id.cardProgressDialog);
-                holder.email = (TextView) convertView.findViewById(R.id.email);
+                holder= new CustomListAdapterChoirEvents.ViewHolder();
+                holder.name = convertView.findViewById(R.id.eventName);
+                holder.image = convertView.findViewById(R.id.calendarImage);
+                //holder.dialog = convertView.findViewById(R.id.progress_Dialog);
+                holder.time = convertView.findViewById(R.id.eventTime);
+                holder.date = convertView.findViewById(R.id.eventDate);
+                holder.location = convertView.findViewById(R.id.eventLocation);
                 holder.parentLayout = convertView.findViewById(R.id.parent_layout);
-               // holder.id =
-
-//                holder.parentLayout.setOnClickListener(new View.OnClickListener(){
-//                    @Override
-//                    public void onClick(View view){
-//                        Intent intent = new Intent(mContext, ProfileActivity.class);
-//                        //intent.putExtra("id",
-//                    }
-//                });
-
-                //result = convertView;
 
                 convertView.setTag(holder);
             }
             else{
-                holder = (ViewHolder) convertView.getTag();
-                //result = convertView;
+//                System.out.println("***************** Inside else ********************");
+
+                holder = (CustomListAdapterChoirEvents.ViewHolder) convertView.getTag();
             }
 
-            holder.title.setText(title);
-            holder.email.setText(email);
+            holder.name.setText(name);
+            holder.time.setText(time);
+            holder.date.setText(date);
+            holder.location.setText(location);
+
+//            System.out.println("holder.name: " +  name);
+//            System.out.println("holder.time: " +  time);
+//            System.out.println("holder.date: " +  date);
+//            System.out.println("holder.location: " +  location);
+//            System.out.println("***************** After else ********************");
 
             //create the imageloader object
             ImageLoader imageLoader = ImageLoader.getInstance();
 
+           // System.out.println("**************** Instantiating imageLoader ********************");
+
             int defaultImage = mContext.getResources().getIdentifier("@drawable/image_failed",null,mContext.getPackageName());
+
+//            System.out.println("*************** default image *****************");
 
             //create display options
             DisplayImageOptions options = new DisplayImageOptions.Builder().cacheInMemory(true)
-                    .cacheOnDisc(true).resetViewBeforeLoading(true)
+                    //.cacheOnDisc(true).resetViewBeforeLoading(true)
                     .showImageForEmptyUri(defaultImage)
                     .showImageOnFail(defaultImage)
                     .showImageOnLoading(defaultImage).build();
+
+           // System.out.println("******************** display option created ******************");
+
 
             //download and display image from url
             imageLoader.displayImage(imgUrl, holder.image, options, new SimpleImageLoadingListener() {
                 @Override
                 public void onLoadingStarted(String imageUri, View view) {
-                    holder.dialog.setVisibility(View.VISIBLE);
+//                    holder.dialog.setVisibility(View.VISIBLE);
+//                    System.out.println("********************* onLoadingStarted ******************");
 
                 }
                 @Override
                 public void onLoadingFailed(String imageUri, View view, FailReason failReason) {
-                    holder.dialog.setVisibility(View.GONE);
+ //                   holder.dialog.setVisibility(View.GONE);
+//                    System.out.println("********************* onLoadingFailed ******************");
+
                 }
                 @Override
                 public void onLoadingComplete(String imageUri, View view, Bitmap loadedImage) {
-                    holder.dialog.setVisibility(View.GONE);
+ //                   holder.dialog.setVisibility(View.GONE);
+//                    System.out.println("********************* onLoadingComplete ******************");
+
                 }
                 @Override
                 public void onLoadingCancelled(String imageUri, View view) {
+//                    System.out.println("********************* onLoadingCancelled ******************");
+
                 }
             });
+
+//            System.out.println("***************** returning image view ***************");
 
             return convertView;
         }catch (IllegalArgumentException e){
             Log.e(TAG, "getView: IllegalArgumentException: " + e.getMessage() );
             return convertView;
         }
-
     }
 
     /**
@@ -178,4 +191,5 @@ public class CustomListAdapter2 extends ArrayAdapter<Card> {
         ImageLoader.getInstance().init(config);
         // END - UNIVERSAL IMAGE LOADER SETUP
     }
+
 }

@@ -115,11 +115,8 @@ public class ChoirListLActivity extends AppCompatActivity implements FragmentDra
 
     }
 
-
     private void createChoirLists(ArrayList<String> choirs) {
-
         for (int i = 0; i < choirs.size(); i++) {
-
             System.out.println(i);
             System.out.println(choirs.get(i));
 
@@ -127,8 +124,6 @@ public class ChoirListLActivity extends AppCompatActivity implements FragmentDra
                     new Response.Listener<String>() {
                         @Override
                         public void onResponse(String response) {
-
-
                             System.out.println("inside Choirs onResponse()****************************");
                             System.out.println("Response: " + response);
 
@@ -164,7 +159,7 @@ public class ChoirListLActivity extends AppCompatActivity implements FragmentDra
             });
             VolleySingleton.getInstance(ChoirListLActivity.this).addToRequestQueue(stringRequesti);
         }
-        System.out.println("done with methond");
+        System.out.println("done with method");
     }
 
     @Override
@@ -192,6 +187,10 @@ public class ChoirListLActivity extends AppCompatActivity implements FragmentDra
                 break;
             case 4:
                 startActivity(new Intent(this, RegisterActivity.class));
+
+                break;
+            case 5:
+                startActivity(new Intent(this, ChoirPageActivity.class));
 
                 break;
             default:

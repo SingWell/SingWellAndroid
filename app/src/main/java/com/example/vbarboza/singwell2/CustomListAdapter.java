@@ -72,7 +72,6 @@ public class CustomListAdapter extends ArrayAdapter<Card> {
         //get the persons information
         String title = getItem(position).getTitle();
         String imgUrl = getItem(position).getImgURL();
-        String email = getItem(position).getEmail();
 
         try{
 

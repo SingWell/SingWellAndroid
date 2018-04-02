@@ -9,7 +9,10 @@ import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
 import android.support.v7.widget.Toolbar;
+import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
@@ -21,7 +24,6 @@ import com.android.volley.toolbox.StringRequest;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -35,7 +37,7 @@ public class RosterActivity extends AppCompatActivity implements FragmentDrawer.
     JSONObject user = new JSONObject();
     ArrayList<Card> list = new ArrayList<>();
     private ListView choristersListView;
-
+    ImageView btn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,13 +56,14 @@ public class RosterActivity extends AppCompatActivity implements FragmentDrawer.
         mToolbar.setTitle("Choir Roster");
         setSupportActionBar(mToolbar);
 
-
         //list1 is in activity_roster.xml (this is how I want the list to look)
         choristersListView = findViewById(R.id.list1);
 
         drawerFragment = (FragmentDrawer) getSupportFragmentManager().findFragmentById(R.id.fragment_navigation_drawer);
         drawerFragment.setUp(R.id.fragment_navigation_drawer, (DrawerLayout) findViewById(R.id.drawer_layout), mToolbar);
         drawerFragment.setDrawerListener(this);
+
+        btn = findViewById(R.id.cardImage);
 
         StringRequest stringRequest = new StringRequest(Request.Method.GET, URLs.URL_USERS + sharedPreferences.getString("id", "id").toString(),
                 new Response.Listener<String>() {
@@ -71,7 +74,7 @@ public class RosterActivity extends AppCompatActivity implements FragmentDrawer.
                             JSONObject obj = new JSONObject(response);
 
                             JSONArray choirs = obj.getJSONArray("choirs");
-                            getChoirs(choirs);
+                             getChoirs(choirs);
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -88,6 +91,7 @@ public class RosterActivity extends AppCompatActivity implements FragmentDrawer.
     }
 
     String choirId;
+
     public void getChoirs(JSONArray choir) throws JSONException {
         for (int i = 0; i < choir.length(); i++) {
             choirId = choir.getString(i);
@@ -104,7 +108,8 @@ public class RosterActivity extends AppCompatActivity implements FragmentDrawer.
                                     String meeting_day = obj.getString("meeting_day");
                                     String startHour = obj.getString("meeting_day_start_hour");
                                     String endHour = obj.getString("meeting_day_end_hour");
-
+//                                    String id = obj.getString("id");
+//                                    System.out.println("id: " + id);
                                     //extracting choirs array from response
                                     JSONArray choristersArray = obj.getJSONArray("choristers");
 
@@ -146,6 +151,7 @@ public class RosterActivity extends AppCompatActivity implements FragmentDrawer.
 
         for(int i = 0; i < id.length(); i++) {
             userID = id.getString(i);
+            System.out.println("Chorister id: " + userID);
             StringRequest stringRequest = new StringRequest(Request.Method.GET, URLs.URL_USERS + userID,
                     new Response.Listener<String>() {
 
@@ -166,6 +172,14 @@ public class RosterActivity extends AppCompatActivity implements FragmentDrawer.
                                 //pass data to listView
                                 CustomListAdapter2 adapter = new CustomListAdapter2(RosterActivity.this, R.layout.rowlayout, list);
                                 choristersListView.setAdapter(adapter);
+
+//                                btn.setOnClickListener(new View.OnClickListener() {
+//                                    @Override
+//                                    public void onClick(View v) {
+//                                        goToRosterActivity(v, userID);
+//                                    }
+//                                });
+                                //setOnClick(btn, userID);
 
 
                             } catch (JSONException e) {
@@ -201,6 +215,21 @@ public class RosterActivity extends AppCompatActivity implements FragmentDrawer.
         }
         return user;
     }
+
+//    private void setOnClick (final ImageView btn, final String id){
+//        btn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                goToRosterActivity(v, userID);
+//            }
+//        });
+//    }
+
+//    public void goToRosterActivity (View v,String id){
+//        Intent intent = new Intent (this, RosterActivity.class);
+//        intent.putExtra("id",((TextView) v).getText().toString());
+//        startActivity(intent);
+//    }
 
     @Override
     public void onDrawerItemSelected(View view, int position) {
