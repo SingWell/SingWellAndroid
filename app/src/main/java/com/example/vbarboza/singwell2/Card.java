@@ -67,16 +67,31 @@ public class Card {
         return email;
     }
 
+    public void setName(String name){
+        this.name = name;
+    }
+
     public String getName(){
         return name;
     }
 
+    public void setTime(String time){
+        this.time = time;
+    }
     public String getTime(){
+
         return time;
     }
 
+    public void setDate(String date){
+        this.date = date;
+    }
     public String getDate(){
         return date;
+    }
+
+    public void setLocation(String location){
+        this.location = location;
     }
 
     public String getLocation(){

@@ -74,9 +74,9 @@ public class CustomListAdapterChoirEvents extends ArrayAdapter<Card> {
         String location = getItem(position).getLocation();
         String imgUrl = getItem(position).getImgURL();
 
-        System.out.println("***************** Inside getView() ********************");
+//        System.out.println("***************** Inside getView() ********************");
         try{
-            System.out.println("***************** Inside try ********************");
+//            System.out.println("***************** Inside try ********************");
 
             //create the view result for showing the animation
             final View result;
@@ -85,14 +85,14 @@ public class CustomListAdapterChoirEvents extends ArrayAdapter<Card> {
             final CustomListAdapterChoirEvents.ViewHolder holder;
 
             if(convertView == null){
-                System.out.println("***************** Inside if() ********************");
+//                System.out.println("***************** Inside if() ********************");
 
                 LayoutInflater inflater = LayoutInflater.from(mContext);
                 convertView = inflater.inflate(mResource, parent, false);
                 holder= new CustomListAdapterChoirEvents.ViewHolder();
                 holder.name = convertView.findViewById(R.id.eventName);
                 holder.image = convertView.findViewById(R.id.calendarImage);
-                holder.dialog = convertView.findViewById(R.id.progress_Dialog);
+                //holder.dialog = convertView.findViewById(R.id.progress_Dialog);
                 holder.time = convertView.findViewById(R.id.eventTime);
                 holder.date = convertView.findViewById(R.id.eventDate);
                 holder.location = convertView.findViewById(R.id.eventLocation);
@@ -101,7 +101,7 @@ public class CustomListAdapterChoirEvents extends ArrayAdapter<Card> {
                 convertView.setTag(holder);
             }
             else{
-                System.out.println("***************** Inside else ********************");
+//                System.out.println("***************** Inside else ********************");
 
                 holder = (CustomListAdapterChoirEvents.ViewHolder) convertView.getTag();
             }
@@ -111,20 +111,20 @@ public class CustomListAdapterChoirEvents extends ArrayAdapter<Card> {
             holder.date.setText(date);
             holder.location.setText(location);
 
-            System.out.println("holder.name: " +  name);
-            System.out.println("holder.time: " +  time);
-            System.out.println("holder.date: " +  date);
-            System.out.println("holder.location: " +  location);
-            System.out.println("***************** After else ********************");
+//            System.out.println("holder.name: " +  name);
+//            System.out.println("holder.time: " +  time);
+//            System.out.println("holder.date: " +  date);
+//            System.out.println("holder.location: " +  location);
+//            System.out.println("***************** After else ********************");
 
             //create the imageloader object
             ImageLoader imageLoader = ImageLoader.getInstance();
 
-            System.out.println("**************** Instantiating imageLoader ********************");
+           // System.out.println("**************** Instantiating imageLoader ********************");
 
             int defaultImage = mContext.getResources().getIdentifier("@drawable/image_failed",null,mContext.getPackageName());
 
-            System.out.println("*************** default image *****************");
+//            System.out.println("*************** default image *****************");
 
             //create display options
             DisplayImageOptions options = new DisplayImageOptions.Builder().cacheInMemory(true)
@@ -133,37 +133,37 @@ public class CustomListAdapterChoirEvents extends ArrayAdapter<Card> {
                     .showImageOnFail(defaultImage)
                     .showImageOnLoading(defaultImage).build();
 
-            System.out.println("******************** display option created ******************");
+           // System.out.println("******************** display option created ******************");
 
 
             //download and display image from url
             imageLoader.displayImage(imgUrl, holder.image, options, new SimpleImageLoadingListener() {
                 @Override
                 public void onLoadingStarted(String imageUri, View view) {
-                    holder.dialog.setVisibility(View.VISIBLE);
-                    System.out.println("********************* onLoadingStarted ******************");
+//                    holder.dialog.setVisibility(View.VISIBLE);
+//                    System.out.println("********************* onLoadingStarted ******************");
 
                 }
                 @Override
                 public void onLoadingFailed(String imageUri, View view, FailReason failReason) {
-                    holder.dialog.setVisibility(View.GONE);
-                    System.out.println("********************* onLoadingFailed ******************");
+ //                   holder.dialog.setVisibility(View.GONE);
+//                    System.out.println("********************* onLoadingFailed ******************");
 
                 }
                 @Override
                 public void onLoadingComplete(String imageUri, View view, Bitmap loadedImage) {
-                    holder.dialog.setVisibility(View.GONE);
-                    System.out.println("********************* onLoadingComplete ******************");
+ //                   holder.dialog.setVisibility(View.GONE);
+//                    System.out.println("********************* onLoadingComplete ******************");
 
                 }
                 @Override
                 public void onLoadingCancelled(String imageUri, View view) {
-                    System.out.println("********************* onLoadingCancelled ******************");
+//                    System.out.println("********************* onLoadingCancelled ******************");
 
                 }
             });
 
-            System.out.println("***************** returning image view ***************");
+//            System.out.println("***************** returning image view ***************");
 
             return convertView;
         }catch (IllegalArgumentException e){

@@ -56,7 +56,6 @@ public class RosterActivity extends AppCompatActivity implements FragmentDrawer.
         mToolbar.setTitle("Choir Roster");
         setSupportActionBar(mToolbar);
 
-
         //list1 is in activity_roster.xml (this is how I want the list to look)
         choristersListView = findViewById(R.id.list1);
 

@@ -20,7 +20,6 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
-import com.nostra13.universalimageloader.core.ImageLoader;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -65,7 +64,7 @@ public class ChoirPageActivity extends AppCompatActivity implements FragmentDraw
         drawerFragment.setDrawerListener(this);
 
         //choirListEvents is in activity_choir_page.xml, this is how I want the list to look
-        choirEventsListView = findViewById(R.id.choirEventsList);
+        choirEventsListView =  findViewById(R.id.choirEventsList);
 
         ImageView btn = findViewById(R.id.action3);
 
@@ -83,8 +82,6 @@ public class ChoirPageActivity extends AppCompatActivity implements FragmentDraw
                         try {
                             //converting response to json object
                             JSONObject obj = new JSONObject(response);
-
-                            //System.out.println("obj: " + obj);
 
                             String name = obj.getString("name");
                             String meeting_day = "Rehearsal: " + DayOfWeek.of(obj.getInt("meeting_day")).toString();
@@ -109,11 +106,11 @@ public class ChoirPageActivity extends AppCompatActivity implements FragmentDraw
                             meetsOnTextView.setText(meeting_day);
                             meetTimesTextView.setText(rehearsalTime);
 
-                            System.out.println("!!!!!!!!!!!!!!!!!!!!! CALLING GETEVENTS() !!!!!!!!!!!!!!!!!!!!!");
+                            //System.out.println("!!!!!!!!!!!!!!!!!!!!! CALLING GETEVENTS() !!!!!!!!!!!!!!!!!!!!!");
                             getEvents();
 
                             //extracting choirs array from response
-                            JSONArray choristersArray = obj.getJSONArray("choristers");
+                           // JSONArray choristersArray = obj.getJSONArray("choristers");
 
 
                         } catch (JSONException e) {
@@ -146,16 +143,14 @@ public class ChoirPageActivity extends AppCompatActivity implements FragmentDraw
         VolleySingleton.getInstance(ChoirPageActivity.this).addToRequestQueue(stringRequest);
     }
 
-
     public void getEvents(){
         System.out.println("!!!!!!!!!!!!!!!!!!!!!!!! INSIDE GETEVENTS() !!!!!!!!!!!!!!!!!!!!!!");
 
         final StringRequest stringRequest = new StringRequest(Request.Method.GET, URLs.URL_CHOIRS + choir12 + events,
-
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        System.out.println("stringRequest: " + URLs.URL_CHOIRS + choir12 + events);
+                        //System.out.println("stringRequest: " + URLs.URL_CHOIRS + choir12 + events);
                         try {
                             //converting response to json object
                             JSONArray events = new JSONArray(response);
@@ -185,14 +180,12 @@ public class ChoirPageActivity extends AppCompatActivity implements FragmentDraw
 
                             System.out.println("list.size(): " + list.size());
 
-                            CustomListAdapterChoirEvents adapter = new CustomListAdapterChoirEvents(ChoirPageActivity.this, R.layout.content_choir_page, list);
+                            CustomListAdapterChoirEvents adapter = new CustomListAdapterChoirEvents(ChoirPageActivity.this, R.layout.choir_events_list, list);
                             System.out.println("Adapter created!!!!!!!!!!!!!!!");
 
                             choirEventsListView.setAdapter(adapter);
 
                             System.out.println("choirEventsListView called!!!!!!!!!!!!!!!");
-
-
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }

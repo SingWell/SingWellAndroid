@@ -41,7 +41,6 @@
                 app:contentScrim="?attr/colorPrimary"
                 app:layout_scrollFlags="scroll|enterAlways|enterAlwaysCollapsed">
 
-
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/profile_image"
                     android:layout_width="120dp"
@@ -50,7 +49,6 @@
                     android:src="@drawable/puppy"
                     app:border_width="1dp"
                     app:border_color="#FFF"/>
-
 
             </android.support.design.widget.CollapsingToolbarLayout>
         </android.support.design.widget.AppBarLayout>
