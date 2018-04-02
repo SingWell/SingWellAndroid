@@ -51,4 +51,7 @@ dependencies {
     //for circle profile image
     compile 'de.hdodenhof:circleimageview:1.2.1'
 
+    //for calendar widget
+    compile 'com.prolificinteractive:material-calendarview:1.4.3'
+
 }

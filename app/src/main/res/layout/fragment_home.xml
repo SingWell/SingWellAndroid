@@ -9,16 +9,16 @@
     tools:context="com.example.vbarboza.singwell2.HomeActivity">
 
 
-    <TextView
-        android:id="@+id/label"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="100dp"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
-        android:textSize="45dp"
-        android:text="@string/singwell"
-        android:textStyle="bold"/>
+    <!--<TextView-->
+        <!--android:id="@+id/label"-->
+        <!--android:layout_alignParentTop="true"-->
+        <!--android:layout_marginTop="100dp"-->
+        <!--android:layout_width="fill_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:gravity="center_horizontal"-->
+        <!--android:textSize="45dp"-->
+        <!--android:text="@string/singwell"-->
+        <!--android:textStyle="bold"/>-->
 
     <LinearLayout
         android:id="@+id/container_toolbar"
@@ -29,7 +29,15 @@
         <include
             android:id="@+id/toolbar"
             layout="@layout/toolbar" />
+
+        <com.prolificinteractive.materialcalendarview.MaterialCalendarView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        </com.prolificinteractive.materialcalendarview.MaterialCalendarView>
     </LinearLayout>
+
+
 
     <fragment
         android:id="@+id/fragment_navigation_drawer"

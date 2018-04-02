@@ -68,7 +68,7 @@ public class ChoirPageActivity extends AppCompatActivity implements FragmentDraw
             }
         });
 
-        String choirId = "21";
+        String choirId = getIntent().getStringExtra("choirID");
 
         StringRequest stringRequest = new StringRequest(Request.Method.GET, URLs.URL_CHOIRS + choirId,
                 new Response.Listener<String>() {
@@ -81,7 +81,7 @@ public class ChoirPageActivity extends AppCompatActivity implements FragmentDraw
                             System.out.println("obj: " + obj);
 
                             String name = obj.getString("name");
-                            String meeting_day = "Rehearsal: " + DayOfWeek.of(obj.getInt("meeting_day")).toString();
+                           // String meeting_day = "Rehearsal: " + DayOfWeek.of(obj.getInt("meeting_day")).toString();
                             String startHour = obj.getString("meeting_day_start_hour");
                             String endHour = obj.getString("meeting_day_end_hour");
 
@@ -99,7 +99,7 @@ public class ChoirPageActivity extends AppCompatActivity implements FragmentDraw
 
                             nameTextView.setText(name);
                             directorNameTextView.setText("Director: Kenton Kravig");
-                            meetsOnTextView.setText(meeting_day);
+                            //meetsOnTextView.setText(meeting_day);
                             meetTimesTextView.setText(rehearsalTime);
 
                             //extracting choirs array from response
@@ -170,10 +170,7 @@ public class ChoirPageActivity extends AppCompatActivity implements FragmentDraw
                 startActivity(new Intent(this, RegisterActivity.class));
 
                 break;
-            case 5:
-                startActivity(new Intent(this, ChoirPageActivity.class));
 
-                break;
             default:
                 break;
         }

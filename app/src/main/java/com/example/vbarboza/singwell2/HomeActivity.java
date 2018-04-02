@@ -54,10 +54,6 @@ public class HomeActivity extends AppCompatActivity implements FragmentDrawer.Fr
                 startActivity(new Intent(this, RegisterActivity.class));
 
                 break;
-            case 5:
-                startActivity(new Intent(this, ChoirPageActivity.class));
-
-                break;
             default:
                 break;
         }

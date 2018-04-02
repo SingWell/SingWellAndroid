@@ -9,6 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Gravity;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -140,12 +141,26 @@ public class ChoirListLActivity extends AppCompatActivity implements FragmentDra
 
                                 String name = obj.getString("name");
                                 System.out.println("name: " + name);
+
+                                final String choirID = obj.getString("id");
+                                System.out.println("id: " + choirID);
+
                                 String email = "";
 
                                 list.add(new Card("drawable://" + R.drawable.iceland, name, email));
 
                                 CustomListAdapter adapter = new CustomListAdapter(ChoirListLActivity.this, R.layout.card_layout_main, list);
                                 choirsListView.setAdapter(adapter);
+                                choirsListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                                    public void onItemClick(AdapterView<?> parent, View view,int position, long id) {
+
+                                        Intent i = new Intent(ChoirListLActivity.this, ChoirPageActivity.class);
+                                        //If you wanna send any data to nextActicity.class you can use
+                                        i.putExtra("choirID", choirID);
+
+                                        startActivity(i);
+                                    }
+                                });
 
                             } catch (JSONException e) {
                                 e.printStackTrace();
@@ -194,10 +209,7 @@ public class ChoirListLActivity extends AppCompatActivity implements FragmentDra
                 startActivity(new Intent(this, RegisterActivity.class));
 
                 break;
-            case 5:
-                startActivity(new Intent(this, ChoirPageActivity.class));
 
-                break;
             default:
                 break;
         }

@@ -28,7 +28,6 @@
         <item>@string/nav_item_profile</item>
         <item>@string/nav_item_login</item>
         <item>@string/nav_item_Register</item>
-        <item>@string/nav_item_choir_page</item>
 
 
     </string-array>

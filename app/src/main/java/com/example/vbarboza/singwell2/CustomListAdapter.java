@@ -47,7 +47,10 @@ public class CustomListAdapter extends ArrayAdapter<Card> {
         TextView title;
         ImageView image;
         ProgressBar dialog;
+
+
     }
+
 
     /**
      * Default constructor for the PersonListAdapter
