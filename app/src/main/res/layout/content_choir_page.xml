@@ -138,7 +138,9 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
                 android:layout_centerHorizontal="true"
-                android:src="@drawable/ic_library_music_black_24dp" />
+                android:src="@drawable/ic_library_music_black_24dp"
+                android:onClick="goToMusicLibraryActivity()"
+                tools:ignore="OnClick"/>
             <ImageView
                 android:id="@+id/action3"
                 android:layout_width="wrap_content"
@@ -148,13 +150,9 @@
                 android:onClick="goToRosterActivity()"
                 android:src="@drawable/ic_group_black_24dp"
                 tools:ignore="OnClick" />
-
-
         </RelativeLayout>
 
 </LinearLayout>
-
-
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -170,19 +168,6 @@
 
         </ListView>
 
-        <!--<android.support.v4.widget.NestedScrollView-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="match_parent" />-->
-
-        <!--<include layout="@layout/item_divider" />-->
-
     </LinearLayout>
 
 </RelativeLayout>
-    <!--</LinearLayout>-->
-<!--</RelativeLayout>-->
-<!--</RelativeLayout>-->
-
-<!--</android.support.v4.widget.NestedScrollView>-->
-
-<!--</RelativeLayout>-->

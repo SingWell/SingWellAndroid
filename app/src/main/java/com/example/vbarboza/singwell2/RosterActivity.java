@@ -173,14 +173,6 @@ public class RosterActivity extends AppCompatActivity implements FragmentDrawer.
                                 CustomListAdapter2 adapter = new CustomListAdapter2(RosterActivity.this, R.layout.rowlayout, list);
                                 choristersListView.setAdapter(adapter);
 
-//                                btn.setOnClickListener(new View.OnClickListener() {
-//                                    @Override
-//                                    public void onClick(View v) {
-//                                        goToRosterActivity(v, userID);
-//                                    }
-//                                });
-                                //setOnClick(btn, userID);
-
 
                             } catch (JSONException e) {
                                 e.printStackTrace();
@@ -216,20 +208,6 @@ public class RosterActivity extends AppCompatActivity implements FragmentDrawer.
         return user;
     }
 
-//    private void setOnClick (final ImageView btn, final String id){
-//        btn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                goToRosterActivity(v, userID);
-//            }
-//        });
-//    }
-
-//    public void goToRosterActivity (View v,String id){
-//        Intent intent = new Intent (this, RosterActivity.class);
-//        intent.putExtra("id",((TextView) v).getText().toString());
-//        startActivity(intent);
-//    }
 
     @Override
     public void onDrawerItemSelected(View view, int position) {
@@ -260,6 +238,10 @@ public class RosterActivity extends AppCompatActivity implements FragmentDrawer.
                 break;
             case 5:
                 startActivity(new Intent(this, ChoirPageActivity.class));
+
+                break;
+            case 6:
+                startActivity(new Intent(this, MusicLibraryActivity.class));
 
                 break;
             default:

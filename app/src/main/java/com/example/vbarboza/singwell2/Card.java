@@ -14,9 +14,8 @@ public class Card {
     private String time;
     private String date;
     private String location;
-
-
-
+    private String composer;
+    private String instrumentation;
 
     public Card(String imgURL, String title) {
         this.imgURL = imgURL;
@@ -36,6 +35,14 @@ public class Card {
         this.location = location;
         this.time = time;
     }
+
+    public Card(String imgURL, String title, String composer, String instrumentation){
+        this.imgURL = imgURL;
+        this.title = title;
+        this.composer = composer;
+        this.instrumentation = instrumentation;
+    }
+
 
     public String getImgURL() {
 
@@ -78,15 +85,18 @@ public class Card {
     public void setTime(String time){
         this.time = time;
     }
+
     public String getTime(){
 
         return time;
     }
 
-    public void setDate(String date){
+    public void setDate(String date)
+    {
         this.date = date;
     }
-    public String getDate(){
+    public String getDate()
+    {
         return date;
     }
 
@@ -97,5 +107,23 @@ public class Card {
     public String getLocation(){
         return location;
     }
+
+    public void setComposer(String composer){
+        this.composer = composer;
+    }
+
+    public String getComposer(){
+        return composer;
+    }
+
+    public void setInstrumentation(String instrumentation){
+        this.instrumentation = instrumentation;
+    }
+
+    public String getInstrumentation(){
+        return instrumentation;
+    }
+
 }
+
 

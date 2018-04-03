@@ -16,6 +16,7 @@
             android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -25,8 +26,11 @@
         <activity android:name=".ChoirListLActivity" />
         <activity android:name=".HomeActivity" />
         <activity android:name=".ChoirPageActivity" />
-        <activity android:name=".RosterActivity">
-        </activity>
+        <activity android:name=".RosterActivity"></activity>
+        <activity
+            android:name=".MusicLibraryActivity"
+            android:label="@string/title_activity_music_library"
+            android:theme="@style/AppTheme.Base"></activity>
     </application>
 
 </manifest>
