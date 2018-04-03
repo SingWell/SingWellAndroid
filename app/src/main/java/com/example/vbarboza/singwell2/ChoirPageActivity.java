@@ -66,12 +66,20 @@ public class ChoirPageActivity extends AppCompatActivity implements FragmentDraw
         //choirListEvents is in activity_choir_page.xml, this is how I want the list to look
         choirEventsListView =  findViewById(R.id.choirEventsList);
 
-        ImageView btn = findViewById(R.id.action3);
+        ImageView btnRoster = findViewById(R.id.action3);
+        ImageView btnMusicLibrary = findViewById(R.id.action2);
 
-        btn.setOnClickListener(new View.OnClickListener() {
+        btnRoster.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 goToRosterActivity(v);
+            }
+        });
+
+        btnMusicLibrary.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goToMusicLibraryActivity(v);
             }
         });
 
@@ -222,6 +230,10 @@ public class ChoirPageActivity extends AppCompatActivity implements FragmentDraw
         startActivity(intent);
     }
 
+    public void goToMusicLibraryActivity (View view){
+        Intent intent = new Intent (this, MusicLibraryActivity.class);
+        startActivity(intent);
+    }
     @Override
     public void onDrawerItemSelected(View view, int position) {
         displayView(position);

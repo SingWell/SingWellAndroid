@@ -193,6 +193,10 @@ public class ChoirListLActivity extends AppCompatActivity implements FragmentDra
                 startActivity(new Intent(this, ChoirPageActivity.class));
 
                 break;
+            case 6:
+                startActivity(new Intent(this, MusicLibraryActivity.class));
+
+                break;
             default:
                 break;
         }
