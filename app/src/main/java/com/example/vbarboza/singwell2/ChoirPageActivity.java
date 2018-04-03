@@ -12,7 +12,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
-  import android.widget.TextView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
@@ -67,15 +67,22 @@ public class ChoirPageActivity extends AppCompatActivity implements FragmentDraw
         //choirListEvents is in activity_choir_page.xml, this is how I want the list to look
         choirEventsListView =  findViewById(R.id.choirEventsList);
 
-        ImageView btn = findViewById(R.id.action3);
+        ImageView btnRoster = findViewById(R.id.action3);
+        ImageView btnMusicLibrary = findViewById(R.id.action2);
 
-        btn.setOnClickListener(new View.OnClickListener() {
+        btnRoster.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 goToRosterActivity(v);
             }
         });
 
+        btnMusicLibrary.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goToMusicLibraryActivity(v);
+            }
+        });
 
         StringRequest stringRequest = new StringRequest(Request.Method.GET, URLs.URL_CHOIRS + choirId,
                 new Response.Listener<String>() {
@@ -224,6 +231,10 @@ public class ChoirPageActivity extends AppCompatActivity implements FragmentDraw
         startActivity(intent);
     }
 
+    public void goToMusicLibraryActivity (View view){
+        Intent intent = new Intent (this, MusicLibraryActivity.class);
+        startActivity(intent);
+    }
     @Override
     public void onDrawerItemSelected(View view, int position) {
         displayView(position);
@@ -251,7 +262,10 @@ public class ChoirPageActivity extends AppCompatActivity implements FragmentDraw
                 startActivity(new Intent(this, RegisterActivity.class));
 
                 break;
+            case 5:
+                startActivity(new Intent(this, MusicLibraryActivity.class));
 
+                break;
             default:
                 break;
         }

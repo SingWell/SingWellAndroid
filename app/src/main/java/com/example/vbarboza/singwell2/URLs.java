@@ -13,5 +13,6 @@ public class URLs {
     public static final String URL_USERS = ROOT_URL + "users/";
     public static final String URL_CHOIRS = ROOT_URL + "choirs/";
     public static final String URL_EVENTS = ROOT_URL + "events/";
+    public static final String URL_MUSICLIBRAY =ROOT_URL + "musicRecords/";
 
 }

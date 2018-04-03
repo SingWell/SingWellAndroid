@@ -15,6 +15,7 @@
     <string name="nav_item_login">Login</string>
     <string name="nav_item_Register">Register</string>
     <string name="nav_item_choir_page">Choir</string>
+    <string name="nav_item_music_library">Music Library</string>
 
 
     <string name="username">Username: </string>
@@ -28,6 +29,7 @@
         <item>@string/nav_item_profile</item>
         <item>@string/nav_item_login</item>
         <item>@string/nav_item_Register</item>
+        <item>@string/nav_item_music_library</item>
 
 
     </string-array>
@@ -39,6 +41,7 @@
     <string name="title_login">Login</string>
     <string name="title_Register">Register</string>
     <string name="title_choir_page">Choir</string>
+    <string name="music_library">Music Library</string>
 
 
     <!-- TODO: Remove or change this placeholder text -->
@@ -119,4 +122,5 @@
     <string name="pref_title_vibrate">Vibrate</string>
     <string name="title_buttonLogout">logout</string>
     <string name="title_activity_choir_page">ChoirPage</string>
+    <string name="title_activity_music_library">MusicLibraryActivity</string>
 </resources>

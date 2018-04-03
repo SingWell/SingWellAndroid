@@ -18,9 +18,6 @@ android {
     }
 }
 
-
-
-
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation 'com.android.support:appcompat-v7:26.1.0'
@@ -51,6 +48,8 @@ dependencies {
     //for circle profile image
     compile 'de.hdodenhof:circleimageview:1.2.1'
 
+    //for allowing percentages to relative views on same page
+    compile 'com.android.support:percent:26.1.0'
     //for calendar widget
     compile 'com.prolificinteractive:material-calendarview:1.4.3'
 

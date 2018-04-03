@@ -221,6 +221,10 @@ public class ProfileActivity extends AppCompatActivity implements FragmentDrawer
                 startActivity(new Intent(this, RegisterActivity.class));
 
                 break;
+            case 5:
+                startActivity(new Intent(this, MusicLibraryActivity.class));
+
+                break;
             default:
                 break;
         }
