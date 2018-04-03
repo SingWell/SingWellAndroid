@@ -151,8 +151,8 @@ public class ChoirListLActivity extends AppCompatActivity implements FragmentDra
 
                                         Intent i = new Intent(ChoirListLActivity.this, ChoirPageActivity.class);
                                         //If you wanna send any data to nextActicity.class you can use
+                                        System.out.println("id: " + choirID);
                                         i.putExtra("choirID", choirID);
-
                                         startActivity(i);
                                     }
                                 });

@@ -35,7 +35,6 @@
                 android:id="@+id/cardImage"
                 app:border_width="1dp"
                 app:border_color="#FFF"
-                android:onClick="goToRosterActivity()"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentTop="true"
                 android:layout_alignBottom="@+id/cardProgressDialog" />

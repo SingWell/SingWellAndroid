@@ -36,9 +36,9 @@ public class ChoirPageActivity extends AppCompatActivity implements FragmentDraw
     SharedPreferences sharedPreferences;
     private FragmentDrawer drawerFragment;
     TextView nameTextView, meetsOnTextView, meetTimesTextView, directorNameTextView, eventDateTextView, eventNameTextView, eventLocationTextView, eventTimeTextView;
-    String choirId = getIntent().getStringExtra("choirID");
+    //String choirId = "";
     String events = "events";
-    String choir12 = "12/";
+    String choir;
     ArrayList<Card> list = new ArrayList<>();
     private ListView choirEventsListView;
 
@@ -50,7 +50,8 @@ public class ChoirPageActivity extends AppCompatActivity implements FragmentDraw
         mToolbar = findViewById(R.id.toolbar);
         mToolbar.setTitle("Choir");
         setSupportActionBar(mToolbar);
-
+        String choirId = getIntent().getStringExtra("choirID");
+        choir = choirId+ "/";
         sharedPreferences = getSharedPreferences("loginPrefs", Context.MODE_PRIVATE);
 
         //If user id is not a number, no user is logged in, redirect to LoginActivity
@@ -75,7 +76,6 @@ public class ChoirPageActivity extends AppCompatActivity implements FragmentDraw
             }
         });
 
-        String choirId = getIntent().getStringExtra("choirID");
 
         StringRequest stringRequest = new StringRequest(Request.Method.GET, URLs.URL_CHOIRS + choirId,
                 new Response.Listener<String>() {
@@ -86,7 +86,7 @@ public class ChoirPageActivity extends AppCompatActivity implements FragmentDraw
                             JSONObject obj = new JSONObject(response);
 
                             String name = obj.getString("name");
-                            String meeting_day = "Rehearsal: " + DayOfWeek.of(obj.getInt("meeting_day")).toString();
+                            //String meeting_day = "Rehearsal: " + DayOfWeek.of(obj.getInt("meeting_day")).toString();
                             String startHour = obj.getString("meeting_day_start_hour");
                             String endHour = obj.getString("meeting_day_end_hour");
                             String director = obj.getString("director_name");
@@ -105,7 +105,7 @@ public class ChoirPageActivity extends AppCompatActivity implements FragmentDraw
 
                             nameTextView.setText(name);
                             directorNameTextView.setText(director);
-                            meetsOnTextView.setText(meeting_day);
+                            //meetsOnTextView.setText(meeting_day);
                             meetTimesTextView.setText(rehearsalTime);
 
                             //System.out.println("!!!!!!!!!!!!!!!!!!!!! CALLING GETEVENTS() !!!!!!!!!!!!!!!!!!!!!");
@@ -148,7 +148,7 @@ public class ChoirPageActivity extends AppCompatActivity implements FragmentDraw
     public void getEvents(){
         System.out.println("!!!!!!!!!!!!!!!!!!!!!!!! INSIDE GETEVENTS() !!!!!!!!!!!!!!!!!!!!!!");
 
-        final StringRequest stringRequest = new StringRequest(Request.Method.GET, URLs.URL_CHOIRS + choir12 + events,
+        final StringRequest stringRequest = new StringRequest(Request.Method.GET, URLs.URL_CHOIRS + choir + events,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
